@@ -61,11 +61,18 @@ public class GLaDOS {
                 } else {
                     System.out.println("Invalid task number.");
                 }
-            } else { 
-                // Else add input to list
+            }
+            // else add input to list
+            else {
                 Task t = new Task(input);
                 storedList.add(t);
-                System.out.println("added: " + input);
+                System.out.println("Got it. I've added this task: ");
+                System.out.println("  " + t);
+                if (storedList.size() == 1) {
+                    System.out.println("Now you have 1 task in the list.");
+                } else {
+                    System.out.println("Now you have " + storedList.size() + " tasks in the list.");
+                }
             }
             
             GLaDOS.printLine();
