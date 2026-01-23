@@ -39,7 +39,29 @@ public class GLaDOS {
                 for (int i = 0; i < storedList.size(); i++) {
                     System.out.println((i + 1) + ". " + storedList.get(i));
                 }
-            } else {
+            } 
+            // input matches "mark <number>" command
+            else if (input.matches("mark \\d+")) { 
+                int taskNumber = Integer.parseInt(input.split(" ")[1]);
+                if (taskNumber > 0 && taskNumber <= storedList.size()) { // input sanitization
+                    storedList.get(taskNumber - 1).markAsDone();
+                    System.out.println("Nice! I've marked task " + taskNumber + " as done:");
+                    System.out.println("  " + storedList.get(taskNumber - 1));
+                } else {
+                    System.out.println("Invalid task number.");
+                }
+            } 
+            // input matches "unmark <number>" command
+            else if (input.matches("unmark \\d+")) { 
+                int taskNumber = Integer.parseInt(input.split(" ")[1]);
+                if (taskNumber > 0 && taskNumber <= storedList.size()) { // input sanitization
+                    storedList.get(taskNumber - 1).unmarkAsNotDone();
+                    System.out.println("OK, I've marked task " + taskNumber + " as not done yet:");
+                    System.out.println("  " + storedList.get(taskNumber - 1));
+                } else {
+                    System.out.println("Invalid task number.");
+                }
+            } else { 
                 // Else add input to list
                 Task t = new Task(input);
                 storedList.add(t);
