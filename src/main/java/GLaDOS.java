@@ -17,7 +17,7 @@ public class GLaDOS {
     public static void listen() {
         String exitCommand = "bye";
         String listCommand = "list";
-        ArrayList<String> storedList = new ArrayList<>();
+        ArrayList<Task> storedList = new ArrayList<>();
 
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         String input;
@@ -41,7 +41,8 @@ public class GLaDOS {
                 }
             } else {
                 // Else add input to list
-                storedList.add(input);
+                Task t = new Task(input);
+                storedList.add(t);
                 System.out.println("added: " + input);
             }
             
