@@ -1,7 +1,10 @@
 import java.util.ArrayList;
 
 public class GLaDOS {
-    public static void intro() {
+
+    private static ArrayList<Task> storedList;
+
+    private static void intro() {
         String logo =   "  ____ _          ____   ___  ____  \r\n" + //
                         " / ___| |    __ _|  _ \\ / _ \\/ ___| \r\n" + //
                         "| |  _| |   / _` | | | | | | \\___ \\ \r\n" + //
@@ -14,11 +17,7 @@ public class GLaDOS {
         GLaDOS.printLine();
     }
 
-    public static void listen() {
-        String exitCommand = "bye";
-        String listCommand = "list";
-        ArrayList<Task> storedList = new ArrayList<>();
-
+    private static void listen() {
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         String input;
 
@@ -29,12 +28,12 @@ public class GLaDOS {
             GLaDOS.printLine();
 
             // If input matches exit command, stop listening
-            if (input.equals(exitCommand)) {
+            if (input.equals("bye")) {
                 break;
             }
             
             // If input matches list command, print list of stored text
-            if (input.equals(listCommand)) {
+            if (input.equals("list")) {
                 // Print stored list
                 for (int i = 0; i < storedList.size(); i++) {
                     System.out.println((i + 1) + ". " + storedList.get(i));
@@ -62,17 +61,33 @@ public class GLaDOS {
                     System.out.println("Invalid task number.");
                 }
             }
+            // input matches "todo <description>" command
+            else if (input.matches("todo .*")) {
+                String description = input.substring(4).trim();
+                Task t = new Todo(description);
+                GLaDOS.addTask(t);
+            }
+            //input matches "deadline <description> /by <deadline>" command
+            else if (input.matches("deadline .* /by .*")) {
+                String[] parts = input.substring(8).split(" /by ", 2);
+                String description = parts[0].trim();
+                String by = parts[1].trim();
+                Deadline t = new Deadline(description, by);
+                GLaDOS.addTask(t);
+            }
+            //input matches "event <description> /from <from> /to <to>" command
+            else if (input.matches("event .* /from .* /to .*")) {
+                String[] parts = input.substring(6).split(" /from | /to ", 3);
+                String description = parts[0].trim();
+                String from = parts[1].trim();
+                String to = parts[2].trim();
+                Event t = new Event(description, from, to);
+                GLaDOS.addTask(t);
+            }
             // else add input to list
             else {
                 Task t = new Task(input);
-                storedList.add(t);
-                System.out.println("Got it. I've added this task: ");
-                System.out.println("  " + t);
-                if (storedList.size() == 1) {
-                    System.out.println("Now you have 1 task in the list.");
-                } else {
-                    System.out.println("Now you have " + storedList.size() + " tasks in the list.");
-                }
+                GLaDOS.addTask(t);
             }
             
             GLaDOS.printLine();
@@ -80,12 +95,23 @@ public class GLaDOS {
         scanner.close();
     }
 
-    public static void outro() {
+    private static void addTask(Task t) {
+        GLaDOS.storedList.add(t);
+        System.out.println("Got it. I've added this task: ");
+        System.out.println("  " + t);
+        if (storedList.size() == 1) {
+            System.out.println("Now you have 1 task in the list.");
+        } else {
+            System.out.println("Now you have " + storedList.size() + " tasks in the list.");
+        }
+    } 
+
+    private static void outro() {
         System.out.println("Goodbye. Thank you for participating in this Aperture Science test.");
         GLaDOS.printLine();
     }
 
-    public static void printLine() {
+    private static void printLine() {
         String lineChar = "\u2500";
         for (int i = 0; i < 83; i++) {
             System.out.print(lineChar);
@@ -94,6 +120,7 @@ public class GLaDOS {
     }
 
     public static void main(String[] args) {
+        GLaDOS.storedList = new ArrayList<>();
         GLaDOS.intro();
         GLaDOS.listen();
         GLaDOS.outro();
