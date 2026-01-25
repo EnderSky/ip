@@ -112,7 +112,8 @@ public class GLaDOS {
     }
 
     private static void printLine() {
-        String lineChar = "\u2500";
+        //String lineChar = "\u2500"; 
+        String lineChar = "-";
         for (int i = 0; i < 83; i++) {
             System.out.print(lineChar);
         }
