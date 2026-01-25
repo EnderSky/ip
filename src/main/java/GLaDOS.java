@@ -40,7 +40,12 @@ public class GLaDOS {
                 }
             } 
             // input matches "mark <number>" command
-            else if (input.matches("mark \\d+")) { 
+            else if (input.startsWith("mark")) { 
+                if (!input.matches("mark \\d+")) {
+                    System.out.println("Please provide the task number to mark in the format: mark <number>");
+                    GLaDOS.printLine();
+                    continue;
+                }
                 int taskNumber = Integer.parseInt(input.split(" ")[1]);
                 if (taskNumber > 0 && taskNumber <= storedList.size()) { // input sanitization
                     storedList.get(taskNumber - 1).markAsDone();
@@ -57,7 +62,12 @@ public class GLaDOS {
                 }
             } 
             // input matches "unmark <number>" command
-            else if (input.matches("unmark \\d+")) { 
+            else if (input.startsWith("unmark")) { 
+                if (!input.matches("unmark \\d+")) {
+                    System.out.println("Please provide the task number to unmark in the format: unmark <number>");
+                    GLaDOS.printLine();
+                    continue;
+                }
                 int taskNumber = Integer.parseInt(input.split(" ")[1]);
                 if (taskNumber > 0 && taskNumber <= storedList.size()) { // input sanitization
                     storedList.get(taskNumber - 1).unmarkAsNotDone();
@@ -137,11 +147,38 @@ public class GLaDOS {
                 Event t = new Event(description, from, to);
                 GLaDOS.addTask(t);
             }
+            else if (input.startsWith("delete")) {
+                if (!input.matches("delete \\d+")) {
+                    System.out.println("Please provide the task number to delete in the format: delete <number>");
+                    GLaDOS.printLine();
+                    continue;
+                }
+                int taskNumber = Integer.parseInt(input.split(" ")[1]);
+                if (taskNumber > 0 && taskNumber <= storedList.size()) { // input sanitization
+                    Task removedTask = storedList.remove(taskNumber - 1);
+                    System.out.println("Noted. I've removed this task:");
+                    System.out.println("  " + removedTask);
+                    if (storedList.size() == 1) {
+                        System.out.println("Now you have 1 task in the list.");
+                    } else {
+                        System.out.println("Now you have " + storedList.size() + " tasks in the list.");
+                    }
+                } else {
+                    if (storedList.size() == 0) {
+                        System.out.println("There are no tasks to delete.");
+                    } else if (storedList.size() == 1) {
+                        System.out.println("Invalid task number. The only valid task number is 1.");
+                    } else {
+                        System.out.println("Invalid task number. Valid task numbers are from 1 to " + storedList.size() + ".");
+                    }
+                }
+            }
             // else add input to list
             else {
                 // handle errors for unrecognized commands
                 System.out.println("I'm sorry, I don't recognize that command.");
-                System.out.println("Valid commands are: list, mark <number>, unmark <number>, bye, todo <description>, \n" + 
+                System.out.println("Valid commands are: list, mark <number>, unmark <number>, delete <number>, bye, \n" + 
+                "                    todo <description>, \n" + 
                 "                    deadline <description> /by <deadline>, \n" +
                 "                    event <description> /from <from> /to <to>");
                 // funny error handling responses
