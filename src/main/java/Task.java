@@ -27,4 +27,20 @@ public class Task {
     public void unmarkAsNotDone() {
         this.isDone = false;
     }
+
+    public char getType() {
+        return this.tag;
+    }
+
+    public boolean isDone() {
+        return this.isDone;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public String getAdditionalInfo() {
+        return null;
+    }
 }
