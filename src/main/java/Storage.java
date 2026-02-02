@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Storage {
 
@@ -36,7 +38,12 @@ public class Storage {
                             break;
                         case 'D':
                             String by = parts[3];
-                            task = new Deadline(description, by);
+                            
+                            // Parse by to LocalDateTime with format: DD MMM YYYY HH:mm am/pm (12-hour format)
+                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a");
+                            LocalDateTime byDateTime = LocalDateTime.parse(by, formatter);
+
+                            task = new Deadline(description, byDateTime);
                             break;
                         case 'E':
                             String from = parts[3];

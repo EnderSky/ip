@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.time.LocalDateTime;
 
 public class GLaDOS {
 
@@ -107,7 +108,7 @@ public class GLaDOS {
                 }
                 case DEADLINE -> {
                     if (!input.matches("deadline .* /by .*")) {
-                        System.out.println("Please provide deadline in the format: deadline <description> /by <deadline>");
+                        System.out.println("Please provide deadline in the format: deadline <description> /by <date/time>");
                         GLaDOS.printLine();
                         continue;
                     }
@@ -124,7 +125,23 @@ public class GLaDOS {
                         GLaDOS.printLine();
                         continue;
                     }
-                    Deadline t = new Deadline(description, by);
+
+                    // If by is in datetime format, store in a java.time.LocalDateTime object
+                    // Accepts formats: DD/MM/YYYY HH:mm am/pm, DD MMM YYYY HH:mm am/pm, YYYY-MM-DD HH:mm am/pm
+                    LocalDateTime dateTime;
+
+                    try {
+                        dateTime = DateTimeParser.parseToLocalDateTime(by.toLowerCase());
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Invalid date/time format for deadline. Please use one of the following formats:");
+                        System.out.println("• DD/MM/YYYY HH:MM AM/PM");
+                        System.out.println("• DD MMM YYYY HH:MM AM/PM");
+                        System.out.println("• YYYY-MM-DD HH:MM AM/PM");
+                        GLaDOS.printLine();
+                        continue;
+                    }
+
+                    Deadline t = new Deadline(description, dateTime);
                     this.addTask(t);
                 }
                 case EVENT -> {
@@ -181,7 +198,7 @@ public class GLaDOS {
                     System.out.println("I'm sorry, I don't recognize that command.");
                     System.out.println("Valid commands are: list, mark <number>, unmark <number>, delete <number>, bye, \n" + 
                     "                    todo <description>, \n" + 
-                    "                    deadline <description> /by <deadline>, \n" +
+                    "                    deadline <description> /by <date/time>, \n" +
                     "                    event <description> /from <from> /to <to>");
                 }
             }
