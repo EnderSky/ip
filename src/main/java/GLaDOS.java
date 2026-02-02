@@ -219,7 +219,7 @@ public class GLaDOS {
 
     public GLaDOS(String filePath) {
         this.storage = new Storage(filePath);
-        this.storedList = new ArrayList<>();
+        this.storedList = this.storage.loadTasks();
     }
 
     public void run() {

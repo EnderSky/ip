@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -14,20 +13,68 @@ public class Storage {
     public Storage(String filePath) {
         this.filePathString = filePath;
     }
+    
+    public ArrayList<Task> loadTasks() {
+        ArrayList<Task> tasks = new ArrayList<>();
+        Path filePath = Paths.get(this.filePathString);
+
+        try (BufferedReader bufferedReader = Files.newBufferedReader(filePath)) {
+            // Check if file exists
+            if (Files.exists(filePath)) {
+                // Read file line by line and create Task objects
+                String line;
+                while ((line = bufferedReader.readLine()) != null) {
+                    String[] parts = line.split(" \\| ");
+                    char type = parts[0].charAt(0);
+                    boolean isDone = parts[1].equals("1");
+                    String description = parts[2];
+                    Task task = null;
+
+                    switch (type) {
+                        case 'T':
+                            task = new Todo(description);
+                            break;
+                        case 'D':
+                            String by = parts[3];
+                            task = new Deadline(description, by);
+                            break;
+                        case 'E':
+                            String from = parts[3];
+                            String to = parts[4];
+                            task = new Event(description, from, to);
+                            break;
+                        default:
+                            System.out.println("Unknown task type: " + type);
+                    }
+
+                    if (task != null) {
+                        if (isDone) {
+                            task.markAsDone();
+                        }
+                        tasks.add(task);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred while reading the file: " + e.getMessage());
+        }
+
+        return tasks;
+    }
 
     public void saveTasks(ArrayList<Task> tasks) {
         // Create file and parent directories if they do not exist
-        File file = new File(this.filePathString);
         Path filePath = Paths.get(this.filePathString);
 
         try {
-            if (!Files.exists(filePath)) {
-                Path parentDir = filePath.getParent();
-                if (parentDir != null) {
-                    Files.createDirectories(parentDir);
-                }
+            // Check if file & parent folders exist
+            if (!Files.exists(filePath.getParent())) {
+                Files.createDirectories(filePath.getParent());
+            }
 
-                file.createNewFile();
+            // Create file if it doesn't exist
+            if (!Files.exists(filePath)) {
+                Files.createFile(filePath);
             }
         } catch (IOException e) {
             System.out.println("An error occurred while creating the file: " + e.getMessage());
@@ -35,7 +82,7 @@ public class Storage {
         
         // Save tasks to file at filePath
         // Per row: <type> | <isDone> | <description> | <additionalInfo>
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(this.filePathString))) {
+        try (BufferedWriter bufferedWriter = Files.newBufferedWriter(filePath)) {
             for (Task task : tasks) {
                 StringBuilder sb = new StringBuilder();
                 sb.append(task.getType()).append(" | ");
@@ -46,8 +93,8 @@ public class Storage {
                 }
 
                 // Write sb.toString() to file
-                bw.write(sb.toString());
-                bw.newLine();
+                bufferedWriter.write(sb.toString());
+                bufferedWriter.newLine();
             }
         } catch (Exception e) {
             System.out.println("An error occurred while writing to file: " + e.getMessage());
