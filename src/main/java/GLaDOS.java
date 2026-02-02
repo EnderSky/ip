@@ -2,9 +2,10 @@ import java.util.ArrayList;
 
 public class GLaDOS {
 
-    private static ArrayList<Task> storedList;
+    private ArrayList<Task> storedList;
+    private Storage storage;
 
-    private static void intro() {
+    private void intro() {
         String logo =   "  ____ _          ____   ___  ____  \r\n" + //
                         " / ___| |    __ _|  _ \\ / _ \\/ ___| \r\n" + //
                         "| |  _| |   / _` | | | | | | \\___ \\ \r\n" + //
@@ -17,7 +18,7 @@ public class GLaDOS {
         GLaDOS.printLine();
     }
 
-    private static void listen() {
+    private void listen() {
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         String input;
 
@@ -56,6 +57,7 @@ public class GLaDOS {
                         storedList.get(taskNumber - 1).markAsDone();
                         System.out.println("Nice! I've marked task " + taskNumber + " as done:");
                         System.out.println("  " + storedList.get(taskNumber - 1));
+                        this.storage.saveTasks(storedList);
                     } else {
                         if (storedList.size() == 0) {
                             System.out.println("There are no tasks to unmark.");
@@ -77,6 +79,7 @@ public class GLaDOS {
                         storedList.get(taskNumber - 1).unmarkAsNotDone();
                         System.out.println("OK, I've marked task " + taskNumber + " as not done yet:");
                         System.out.println("  " + storedList.get(taskNumber - 1));
+                        this.storage.saveTasks(storedList);
                     } else {
                         if (storedList.size() == 0) {
                             System.out.println("There are no tasks to unmark.");
@@ -100,7 +103,7 @@ public class GLaDOS {
                         continue;
                     }
                     Task t = new Todo(description);
-                    GLaDOS.addTask(t);
+                    this.addTask(t);
                 }
                 case DEADLINE -> {
                     if (!input.matches("deadline .* /by .*")) {
@@ -122,7 +125,7 @@ public class GLaDOS {
                         continue;
                     }
                     Deadline t = new Deadline(description, by);
-                    GLaDOS.addTask(t);
+                    this.addTask(t);
                 }
                 case EVENT -> {
                     if (!input.matches("event .* /from .* /to .*")) {
@@ -145,7 +148,7 @@ public class GLaDOS {
                         continue;
                     }
                     Event t = new Event(description, from, to);
-                    GLaDOS.addTask(t);
+                    this.addTask(t);
                 }
                 case DELETE -> {
                     if (!input.matches("delete \\d+")) {
@@ -163,6 +166,7 @@ public class GLaDOS {
                         } else {
                             System.out.println("Now you have " + storedList.size() + " tasks in the list.");
                         }
+                        this.storage.saveTasks(storedList);
                     } else {
                         if (storedList.size() == 0) {
                             System.out.println("There are no tasks to delete.");
@@ -187,8 +191,8 @@ public class GLaDOS {
         scanner.close();
     }
 
-    private static void addTask(Task t) {
-        GLaDOS.storedList.add(t);
+    private void addTask(Task t) {
+        this.storedList.add(t);
         System.out.println("Got it. I've added this task: ");
         System.out.println("  " + t);
         if (storedList.size() == 1) {
@@ -196,9 +200,10 @@ public class GLaDOS {
         } else {
             System.out.println("Now you have " + storedList.size() + " tasks in the list.");
         }
+        this.storage.saveTasks(storedList);
     } 
 
-    private static void outro() {
+    private void outro() {
         System.out.println("Goodbye. Thank you for participating in this Aperture Science test.");
         GLaDOS.printLine();
     }
@@ -212,10 +217,19 @@ public class GLaDOS {
         System.out.println();
     }
 
+    public GLaDOS(String filePath) {
+        this.storage = new Storage(filePath);
+        this.storedList = new ArrayList<>();
+    }
+
+    public void run() {
+        this.intro();
+        this.listen();
+        this.outro();
+    }
+
     public static void main(String[] args) {
-        GLaDOS.storedList = new ArrayList<>();
-        GLaDOS.intro();
-        GLaDOS.listen();
-        GLaDOS.outro();
+        GLaDOS app = new GLaDOS("../../../data/tasks.txt");
+        app.run();
     }
 }
