@@ -8,14 +8,27 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/***
+ * Handles loading and saving of tasks to and from the file system.
+ */
 public class Storage {
 
     private String filePathString;
 
+    /***
+     * Constructor for Storage class.
+     * 
+     * @param filePath The file path where tasks are stored.
+     */
     public Storage(String filePath) {
         this.filePathString = filePath;
     }
     
+    /***
+     * Loads tasks from the file at the specified file path.
+     * 
+     * @return An ArrayList of Task objects loaded from the file.
+     */
     public ArrayList<Task> loadTasks() {
         ArrayList<Task> tasks = new ArrayList<>();
         Path filePath = Paths.get(this.filePathString);
@@ -69,6 +82,11 @@ public class Storage {
         return tasks;
     }
 
+    /***
+     * Saves the given list of tasks to the file at the specified file path.
+     * 
+     * @param tasks The ArrayList of Task objects to be saved.
+     */
     public void saveTasks(ArrayList<Task> tasks) {
         // Create file and parent directories if they do not exist
         Path filePath = Paths.get(this.filePathString);
