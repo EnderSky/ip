@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.ArrayList;
 
 /**
  * Handles user interface interactions.
@@ -12,6 +11,7 @@ public class Ui {
 
     /**
      * Constructor for Ui class.
+     * Initializes the logo and scanner.
      * 
      * @param logo
      */
@@ -63,11 +63,9 @@ public class Ui {
     /**
      * Displays the list of tasks to the user.
      */
-    public void showTasks(ArrayList<Task> tasks) {
+    public void showTasks(String tasks) {
         System.out.println("Here are the tasks in your list:");
-        for (int i = 0; i < tasks.size(); i++) {
-            System.out.println((i + 1) + ". " + tasks.get(i).toString());
-        }
+        System.out.println(tasks);
     }
 
     /**
@@ -108,6 +106,13 @@ public class Ui {
         System.out.println("  " + taskString);
     }
 
+    /**
+     * Displays a success message when a task is deleted.
+     * 
+     * @param taskNumber number of the task deleted
+     * @param taskString string representation of the task deleted
+     * @param totalTasks total number of tasks after deletion
+     */
     public void showSuccessDelete(int taskNumber, String taskString, int totalTasks) {
         System.out.println("Noted. I've removed task " + taskNumber + " from the list:");
         System.out.println("  " + taskString);
@@ -173,6 +178,11 @@ public class Ui {
         Ui.showLine();
     }
 
+    /**
+     * Displays an error message for invalid date/time format.
+     * 
+     * @param dateTimeInput The invalid date/time input string.
+     */
     public void showErrorInvalidDateTimeFormat(String dateTimeInput) {
         System.out.println("Invalid date/time format: " + dateTimeInput);
         System.out.println("Please use one of the following formats:");

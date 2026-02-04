@@ -1,24 +1,17 @@
-import java.util.ArrayList;
 import java.time.LocalDateTime;
 
+/**
+ * Main application class for GLaDOS task manager.
+ */
 public class Glados {
 
-    private ArrayList<Task> storedList;
     private Ui ui;
     private Storage storage;
+    private TaskList taskList;
 
-    private void addTask(Task t) {
-        this.storedList.add(t);
-        this.ui.showAddTaskMessage(t.toString(), this.storedList.size());
-        this.storage.saveTasks(this.storedList);
-    }
-
-    public Glados(String filePath, String logo) {
-        this.ui = new Ui(logo);
-        this.storage = new Storage(filePath);
-        this.storedList = this.storage.loadTasks();
-    }
-
+    /**
+     * Runs the main application loop.
+     */
     public void run() {
         this.ui.showWelcomeMessage();
 
@@ -35,10 +28,10 @@ public class Glados {
                     break loop;
                 }
                 case LIST -> {
-                    if (this.storedList.size() == 0) {
+                    if (this.taskList.getSize() == 0) {
                         this.ui.showErrorEmptyList();
                     } else {
-                        this.ui.showTasks(this.storedList);
+                        this.ui.showTasks(this.taskList.toString());
                     }
                 }
                 case MARK -> {
@@ -47,12 +40,12 @@ public class Glados {
                         continue;
                     }
                     int taskNumber = Integer.parseInt(input.split(" ")[1]);
-                    if (taskNumber > 0 && taskNumber <= this.storedList.size()) {
-                        this.storedList.get(taskNumber - 1).markAsDone();
-                        this.ui.showSuccessMark(taskNumber, this.storedList.get(taskNumber - 1).toString());
-                        this.storage.saveTasks(this.storedList);
+                    int listSize = this.taskList.getSize();
+                    if (taskNumber > 0 && taskNumber <= listSize) {
+                        Task t = this.taskList.markTaskAsDone(taskNumber - 1);
+                        this.ui.showSuccessMark(taskNumber, t.toString());
                     } else {
-                        this.ui.showErrorInvalidTaskNumber("mark", this.storedList.size());
+                        this.ui.showErrorInvalidTaskNumber("mark", listSize);
                     }
                 }
                 case UNMARK -> {
@@ -61,12 +54,12 @@ public class Glados {
                         continue;
                     }
                     int taskNumber = Integer.parseInt(input.split(" ")[1]);
-                    if (taskNumber > 0 && taskNumber <= this.storedList.size()) {
-                        this.storedList.get(taskNumber - 1).unmarkAsNotDone();
-                        this.ui.showSuccessUnmark(taskNumber, this.storedList.get(taskNumber - 1).toString());
-                        this.storage.saveTasks(this.storedList);
+                    int listSize = this.taskList.getSize();
+                    if (taskNumber > 0 && taskNumber <= listSize) {
+                        Task t = this.taskList.unmarkTaskAsNotDone(taskNumber - 1);
+                        this.ui.showSuccessUnmark(taskNumber, t.toString());
                     } else {
-                        this.ui.showErrorInvalidTaskNumber("unmark", this.storedList.size());
+                        this.ui.showErrorInvalidTaskNumber("unmark", listSize);
                     }
                 }
                 case TODO -> {
@@ -142,12 +135,12 @@ public class Glados {
                         continue;
                     }
                     int taskNumber = Integer.parseInt(input.split(" ")[1]);
-                    if (taskNumber > 0 && taskNumber <= this.storedList.size()) {
-                        Task removedTask = this.storedList.remove(taskNumber - 1);
-                        this.ui.showSuccessDelete(taskNumber, removedTask.toString(), this.storedList.size());
-                        this.storage.saveTasks(this.storedList);
+                    int listSize = this.taskList.getSize();
+                    if (taskNumber > 0 && taskNumber <= listSize) {
+                        Task removedTask = this.taskList.removeTask(taskNumber - 1);
+                        this.ui.showSuccessDelete(taskNumber, removedTask.toString(), listSize);
                     } else {
-                        this.ui.showErrorInvalidTaskNumber("delete", this.storedList.size());
+                        this.ui.showErrorInvalidTaskNumber("delete", listSize);
                     }
                 }
                 case UNKNOWN -> {
@@ -161,6 +154,29 @@ public class Glados {
         this.ui.showGoodbyeMessage();
     }
 
+    private void addTask(Task t) {
+        this.taskList.addTask(t);
+        this.ui.showAddTaskMessage(t.toString(), this.taskList.getSize());
+    }
+
+    /**
+     * Constructor for GLaDOS application.
+     * Initializes UI, Storage, and TaskList components.
+     * 
+     * @param filePath File path for storing tasks.
+     * @param logo Logo string to display on startup.
+     */
+    public Glados(String filePath, String logo) {
+        this.ui = new Ui(logo);
+        this.storage = new Storage(filePath);
+        this.taskList = new TaskList(this.storage);
+    }
+
+    /**
+     * Main method to start the GLaDOS application.
+     * 
+     * @param args Command line arguments (not used).
+     */
     public static void main(String[] args) {
         String filePath = "../../../data/tasks.txt";
         String logo = "  ____ _          ____   ___  ____  \r\n" + //
