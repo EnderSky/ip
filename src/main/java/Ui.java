@@ -124,84 +124,88 @@ public class Ui {
     }
 
     /**
-     * Displays an error message when the task list is empty.
+     * Displays a custom error message.
+     * 
+     * @param message the error message to display
      */
-    public void showErrorEmptyList() {
-        System.out.println("Your task list is currently empty.");
-        System.out.println("Add tasks using the following commands: todo, deadline, event.");
+    public void showError(String message) {
+        System.out.println(message);
     }
 
     /**
-     * Displays an error message for incorrect format when marking a task.
+     * Returns an error message when the task list is empty.
      */
-    public void showErrorIncorrectNumberFormat(String taskName) {
-        System.out.println("Please provide the task number to {taskName} in the format: {taskName} <number>"
-                .replace("{taskName}", taskName));
-        Ui.showLine();
+    public static String getErrorEmptyList() {
+        return "Your task list is currently empty.\n" +
+                "Add tasks using the following commands: todo, deadline, event.";       
     }
 
     /**
-     * Displays an error message for incorrect command format.
+     * Returns an error message for incorrect format when marking a task.
+     */
+    public static String getErrorIncorrectNumberFormat(String taskName) {
+        return "Please provide the task number to {taskName} in the format: {taskName} <number>"
+                .replace("{taskName}", taskName);
+    }
+
+    /**
+     * Returns an error message for incorrect command format.
      * 
      * @param commandName name of the command
      * @param correctFormat the correct format for the command
      */
-    public void showErrorIncorrectCommandFormat(String commandName, String correctFormat) {
-        System.out.println("Please provide " + commandName + " in the format: " + correctFormat);
-        Ui.showLine();
+    public static String getErrorIncorrectCommandFormat(String commandName, String correctFormat) {
+        return "Please provide " + commandName + " in the format: " + correctFormat;
     }
 
     /**
-     * Displays an error message for invalid task number.
+     * Returns an error message for invalid task number.
      * 
      * @param taskName name of the task (mark / unmark / delete)
      * @param listSize size of the current task list
      */
-    public void showErrorInvalidTaskNumber(String taskName, int listSize) {
+    public static String getErrorInvalidTaskNumber(String taskName, int listSize) {
         if (listSize == 0) {
-            System.out.println("There are no tasks to " + taskName + ".");
+            return "There are no tasks to " + taskName + ".";
         } else if (listSize == 1) {
-            System.out.println("Invalid task number. The only valid task number is 1.");
+            return "Invalid task number. The only valid task number is 1.";
         } else {
-            System.out.println("Invalid task number. Valid task numbers are from 1 to "
-                    + listSize + ".");
+            return "Invalid task number. Valid task numbers are from 1 to "
+                    + listSize + ".";
         }
     }
 
     /**
-     * Displays an error message for empty input.
+     * Returns an error message for empty input.
      * 
      * @param text
      */
-    public void showErrorEmpty(String text) {
-        System.out.println(text + " cannot be empty.");
-        Ui.showLine();
+    public static String getErrorEmpty(String text) {
+        return text + " cannot be empty.";
     }
 
     /**
-     * Displays an error message for invalid date/time format.
+     * Returns an error message for invalid date/time format.
      * 
      * @param dateTimeInput The invalid date/time input string.
      */
-    public void showErrorInvalidDateTimeFormat(String dateTimeInput) {
-        System.out.println("Invalid date/time format: " + dateTimeInput);
-        System.out.println("Please use one of the following formats:");
-        System.out.println("- DD/MM/YYYY HH:MM AM/PM (12-hour) or HHMM (24-hour)");
-        System.out.println("- DD MMM YYYY HH:MM AM/PM (12-hour) or HHMM (24-hour)");
-        System.out.println("- YYYY-MM-DD HH:MM AM/PM (12-hour) or HHMM (24-hour)");
-        System.out.println("- Examples: 2/1/2024 6:00 PM, 2 Dec 2024 1830, 2024-12-25 08:00 am");
-        Ui.showLine();
+    public static String getErrorInvalidDateTimeFormat(String dateTimeInput) {
+        return "Invalid date/time format: " + dateTimeInput + "\n" +
+               "Please use one of the following formats:\n" +
+               "- DD/MM/YYYY HH:MM AM/PM (12-hour) or HHMM (24-hour)\n" +
+               "- DD MMM YYYY HH:MM AM/PM (12-hour) or HHMM (24-hour)\n" +
+               "- YYYY-MM-DD HH:MM AM/PM (12-hour) or HHMM (24-hour)\n" +
+               "- Examples: 2/1/2024 6:00 PM, 2 Dec 2024 1830, 2024-12-25 08:00 am";
     }
 
     /**
-     * Displays an error message for unknown command.
+     * Returns an error message for unknown command.
      */
-    public void showErrorUnknownCommand() {
-        System.out.println("I'm sorry, I don't recognize that command.");
-        System.out.println(
-                "Valid commands are: list, mark <number>, unmark <number>, delete <number>, bye, \n" +
-                        "                    todo <description>, \n" +
-                        "                    deadline <description> /by <date/time>, \n" +
-                        "                    event <description> /from <from> /to <to>");
+    public static String getErrorUnknownCommand() {
+        return "I'm sorry, I don't recognize that command.\n" +
+               "Valid commands are: list, mark <number>, unmark <number>, delete <number>, bye, \n" +
+               "                    todo <description>, \n" +
+               "                    deadline <description> /by <date/time>, \n" +
+               "                    event <description> /from <from> /to <to>";
     }
 }
