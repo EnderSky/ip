@@ -1,4 +1,15 @@
+package glados.command;
+
 import java.time.LocalDateTime;
+
+import glados.task.Deadline;
+import glados.task.Event;
+import glados.task.Task;
+import glados.task.TaskList;
+import glados.task.TaskType;
+import glados.task.Todo;
+import glados.utils.GladosException;
+import glados.utils.Ui;
 
 public class CommandAddTask extends Command {
     private TaskType type;

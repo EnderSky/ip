@@ -1,3 +1,4 @@
+package glados.utils;
 import java.util.Scanner;
 
 /**

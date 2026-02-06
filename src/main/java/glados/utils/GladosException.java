@@ -1,3 +1,5 @@
+package glados.utils;
+
 public class GladosException extends RuntimeException {
     
     /**

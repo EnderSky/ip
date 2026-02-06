@@ -1,3 +1,12 @@
+package glados.main;
+
+import glados.command.Command;
+import glados.parser.InputParser;
+import glados.task.TaskList;
+import glados.utils.GladosException;
+import glados.utils.Storage;
+import glados.utils.Ui;
+
 /**
  * Main application class for GLaDOS task manager.
  */

@@ -1,4 +1,7 @@
+package glados.task;
 import java.util.ArrayList;
+
+import glados.utils.Storage;
 
 /**
  * Manages the list of tasks.

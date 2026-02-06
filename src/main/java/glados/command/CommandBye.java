@@ -1,3 +1,9 @@
+package glados.command;
+
+import glados.task.TaskList;
+import glados.utils.GladosException;
+import glados.utils.Ui;
+
 public class CommandBye extends Command {
     /**
      * Executes the bye command.

@@ -1,3 +1,10 @@
+package glados.command;
+
+import glados.task.Task;
+import glados.task.TaskList;
+import glados.utils.GladosException;
+import glados.utils.Ui;
+
 public class CommandMark extends Command {
     private final int taskNumber;
     private final boolean isMark;
