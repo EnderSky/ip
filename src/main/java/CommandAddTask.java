@@ -1,0 +1,69 @@
+import java.time.LocalDateTime;
+
+public class CommandAddTask extends Command {
+    private TaskType type;
+    private String description;
+    private LocalDateTime dateTime;
+    private String from;
+    private String to;
+
+    /**
+     * Constructor for Todo task command.
+     * 
+     * @param type TaskType.todo
+     * @param description Description of the todo task
+     */
+    public CommandAddTask(TaskType type, String description) {
+        this.type = type;
+        this.description = description;
+    }
+
+    /**
+     * Constructor for Deadline task command.
+     * 
+     * @param type TaskType.DEADLINE
+     * @param description Description of the deadline task
+     * @param dateTime Deadline date and time
+     */
+    public CommandAddTask(TaskType type, String description, LocalDateTime dateTime) {
+        this.type = type;
+        this.description = description;
+        this.dateTime = dateTime;
+    }
+
+    /**
+     * Constructor for Event task command.
+     * 
+     * @param type TaskType.EVENT
+     * @param description Description of the event task
+     * @param from Starting time of the event
+     * @param to Ending time of the event
+     */
+    public CommandAddTask(TaskType type, String description, String from, String to) {
+        this.type = type;
+        this.description = description;
+        this.from = from;
+        this.to = to;
+    }
+
+    @Override
+    public void execute(TaskList tasks, Ui ui) throws GladosException {
+        Task t;
+        switch(this.type) {
+            case TODO -> {
+                t = new Todo(this.description);
+            }
+            case DEADLINE -> {
+                t = new Deadline(this.description, this.dateTime);
+            }
+            case EVENT -> {
+                t = new Event(this.description, this.from, this.to);
+            }
+            default -> {
+                throw new GladosException("Unknown task type.");
+            }
+        }
+        tasks.addTask(t);
+        ui.showAddTaskMessage(t.toString(), tasks.getSize());
+    }
+}

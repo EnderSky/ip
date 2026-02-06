@@ -4,6 +4,9 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 
+/**
+ * Utility class for parsing date-time strings into LocalDateTime objects.
+ */
 public class DateTimeParser {
 
     private static final List<DateTimeFormatter> FORMATTERS = List.of(
@@ -24,6 +27,13 @@ public class DateTimeParser {
             .toFormatter()
     );
 
+    /**
+     * Parses the input string into a LocalDateTime object using supported formats.
+     * 
+     * @param input The date-time string to parse.
+     * @return The corresponding LocalDateTime object.
+     * @throws IllegalArgumentException If the input does not match any supported format.
+     */
     public static LocalDateTime parseToLocalDateTime(String input) {
         for (DateTimeFormatter formatter : FORMATTERS) {
             try {

@@ -1,25 +1,18 @@
-// Keep all possible command types in one place using enums
-// Prevents mistyping command strings
-public enum Command {
-    BYE,
-    LIST,
-    MARK,
-    UNMARK,
-    TODO,
-    DEADLINE,
-    EVENT,
-    DELETE,
-    UNKNOWN;
+/**
+ * Parent class for all commands.
+ */
+public abstract class Command {    
+    /**
+     * Executes the command.
+     */
+    public abstract void execute(TaskList tasks, Ui ui) throws GladosException;
 
-    public static Command fromInput(String input) {
-        if (input.equals("bye")) return BYE;
-        if (input.equals("list")) return LIST;
-        if (input.startsWith("mark")) return MARK;
-        if (input.startsWith("unmark")) return UNMARK;
-        if (input.startsWith("todo")) return TODO;
-        if (input.startsWith("deadline")) return DEADLINE;
-        if (input.startsWith("event")) return EVENT;
-        if (input.startsWith("delete")) return DELETE;
-        return UNKNOWN;
+    /**
+     * Indicates whether this command exits the program.
+     * 
+     * @return false as default behavior
+     */
+    public boolean isExit() {
+        return false;
     }
 }
