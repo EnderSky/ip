@@ -49,7 +49,6 @@ public class Ui {
         this.scanner.close();
         System.out.println("Goodbye. Thank you for participating in this Aperture Science test.");
         System.out.println("Remember, the cake is a lie.");
-        Ui.showLine();
     }
 
     /**
@@ -146,6 +145,14 @@ public class Ui {
     public static String getErrorIncorrectNumberFormat(String taskName) {
         return "Please provide the task number to {taskName} in the format: {taskName} <number>"
                 .replace("{taskName}", taskName);
+    }
+
+    public static String getErrorTaskAlreadyMarked() {
+        return "This task is already marked as done.";
+    }
+
+    public static String getErrorTaskAlreadyUnmarked() {
+        return "This task is already marked as not done.";
     }
 
     /**

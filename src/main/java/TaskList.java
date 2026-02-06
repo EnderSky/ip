@@ -48,6 +48,10 @@ public class TaskList {
         return t;
     }
 
+    public Boolean isTaskMarked(int index) {
+        return this.getTask(index).isDone();
+    }
+
     /** 
      * Marks a task as done by index and saves the updated list to storage.
      * 
