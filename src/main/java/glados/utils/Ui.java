@@ -1,4 +1,5 @@
 package glados.utils;
+
 import java.util.Scanner;
 
 /**
@@ -133,7 +134,7 @@ public class Ui {
     }
 
     /**
-     * Returns an error message when the task list is empty.
+     * Returns an error message for empty task list.
      */
     public static String getErrorEmptyList() {
         return "Your task list is currently empty.\n" +
@@ -142,6 +143,8 @@ public class Ui {
 
     /**
      * Returns an error message for incorrect format when marking a task.
+     * 
+     * @param taskName name of the task (mark / unmark)
      */
     public static String getErrorIncorrectNumberFormat(String taskName) {
         return "Please provide the task number to {taskName} in the format: {taskName} <number>"
@@ -186,7 +189,7 @@ public class Ui {
     /**
      * Returns an error message for empty input.
      * 
-     * @param text
+     * @param text The text that cannot be empty.
      */
     public static String getErrorEmpty(String text) {
         return text + " cannot be empty.";
