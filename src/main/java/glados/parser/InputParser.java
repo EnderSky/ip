@@ -8,6 +8,7 @@ import glados.command.CommandBye;
 import glados.command.CommandList;
 import glados.command.CommandMark;
 import glados.command.CommandDelete;
+import glados.command.CommandFind;
 import glados.task.TaskType;
 import glados.utils.GladosException;
 import glados.utils.Ui;
@@ -118,6 +119,17 @@ public class InputParser {
             }
             int taskNumber = Integer.parseInt(input.split(" ")[1]);
             return new CommandDelete(taskNumber);
+        }
+
+        if (input.startsWith("find")) {
+            if (!input.matches("find .*")) {
+                throw new GladosException(Ui.getErrorIncorrectCommandFormat("find", "find <keyword>"));
+            }
+            String keyword = input.substring(4).trim();
+            if (keyword.isEmpty()) {
+                throw new GladosException(Ui.getErrorEmpty("Keyword for find command"));
+            }
+            return new CommandFind(keyword);
         }
 
         // Unknown command

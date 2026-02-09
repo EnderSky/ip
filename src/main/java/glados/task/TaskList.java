@@ -18,7 +18,7 @@ public class TaskList {
      * @param index The index of the task to retrieve.
      * @return The Task object at the specified index.
      */
-    private Task getTask(int index) {
+    public Task getTaskByIndex(int index) {
         return this.tasks.get(index);
     }
 
@@ -71,7 +71,7 @@ public class TaskList {
      * @return true if the task is marked as done, false otherwise.
      */
     public Boolean isTaskMarked(int index) {
-        return this.getTask(index).isDone();
+        return this.getTaskByIndex(index).isDone();
     }
 
     /**
@@ -81,7 +81,7 @@ public class TaskList {
      * @return The Task object that was marked as done.
      */
     public Task markTaskAsDone(int index) {
-        Task t = this.getTask(index);
+        Task t = this.getTaskByIndex(index);
         t.markAsDone();
         this.storage.saveTasks(this.tasks);
         return t;
@@ -94,7 +94,7 @@ public class TaskList {
      * @return The Task object that was unmarked as not done.
      */
     public Task unmarkTaskAsNotDone(int index) {
-        Task t = this.getTask(index);
+        Task t = this.getTaskByIndex(index);
         t.unmarkAsNotDone();
         this.storage.saveTasks(this.tasks);
         return t;
@@ -106,7 +106,7 @@ public class TaskList {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < this.tasks.size(); i++) {
-            sb.append((i + 1) + ". " + this.getTask(i).toString() + "\n");
+            sb.append((i + 1) + ". " + this.getTaskByIndex(i).toString() + "\n");
         }
         return sb.toString().trim();
     }

@@ -125,6 +125,22 @@ public class Ui {
     }
 
     /**
+     * Displays the found tasks containing the keyword.
+     * 
+     * @param foundTasks String representation of found tasks.
+     * @param count      Number of found tasks.
+     * @param keyword    The keyword searched for.
+     */
+    public void showFindTasksMessage(String foundTasks, int count, String keyword) {
+        if (count == 0) {
+            System.out.println("No tasks found containing the keyword: " + keyword);
+        } else {
+            System.out.println("Here are the matching tasks in your list:");
+            System.out.println(foundTasks);
+        }
+    }
+
+    /**
      * Displays a custom error message.
      * 
      * @param message the error message to display
