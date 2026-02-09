@@ -4,7 +4,7 @@ package glados.task;
  * Represents a generic Task with a description and completion status.
  */
 public class Task {
-    
+
     protected String description;
     protected boolean isDone;
     protected char tag;

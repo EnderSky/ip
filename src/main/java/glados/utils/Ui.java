@@ -138,7 +138,7 @@ public class Ui {
      */
     public static String getErrorEmptyList() {
         return "Your task list is currently empty.\n" +
-                "Add tasks using the following commands: todo, deadline, event.";       
+                "Add tasks using the following commands: todo, deadline, event.";
     }
 
     /**
@@ -162,7 +162,7 @@ public class Ui {
     /**
      * Returns an error message for incorrect command format.
      * 
-     * @param commandName name of the command
+     * @param commandName   name of the command
      * @param correctFormat the correct format for the command
      */
     public static String getErrorIncorrectCommandFormat(String commandName, String correctFormat) {
@@ -202,11 +202,11 @@ public class Ui {
      */
     public static String getErrorInvalidDateTimeFormat(String dateTimeInput) {
         return "Invalid date/time format: " + dateTimeInput + "\n" +
-               "Please use one of the following formats:\n" +
-               "- DD/MM/YYYY HH:MM AM/PM (12-hour) or HHMM (24-hour)\n" +
-               "- DD MMM YYYY HH:MM AM/PM (12-hour) or HHMM (24-hour)\n" +
-               "- YYYY-MM-DD HH:MM AM/PM (12-hour) or HHMM (24-hour)\n" +
-               "- Examples: 2/1/2024 6:00 PM, 2 Dec 2024 1830, 2024-12-25 08:00 am";
+                "Please use one of the following formats:\n" +
+                "- DD/MM/YYYY HH:MM AM/PM (12-hour) or HHMM (24-hour)\n" +
+                "- DD MMM YYYY HH:MM AM/PM (12-hour) or HHMM (24-hour)\n" +
+                "- YYYY-MM-DD HH:MM AM/PM (12-hour) or HHMM (24-hour)\n" +
+                "- Examples: 2/1/2024 6:00 PM, 2 Dec 2024 1830, 2024-12-25 08:00 am";
     }
 
     /**
@@ -214,9 +214,9 @@ public class Ui {
      */
     public static String getErrorUnknownCommand() {
         return "I'm sorry, I don't recognize that command.\n" +
-               "Valid commands are: list, mark <number>, unmark <number>, delete <number>, bye, \n" +
-               "                    todo <description>, \n" +
-               "                    deadline <description> /by <date/time>, \n" +
-               "                    event <description> /from <from> /to <to>";
+                "Valid commands are: list, mark <number>, unmark <number>, delete <number>, bye, \n" +
+                "                    todo <description>, \n" +
+                "                    deadline <description> /by <date/time>, \n" +
+                "                    event <description> /from <from> /to <to>";
     }
 }

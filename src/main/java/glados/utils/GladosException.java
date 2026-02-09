@@ -4,7 +4,7 @@ package glados.utils;
  * Custom exception class for Glados application.
  */
 public class GladosException extends RuntimeException {
-    
+
     /**
      * Constructs a new GladosException with the specified detail message.
      *
