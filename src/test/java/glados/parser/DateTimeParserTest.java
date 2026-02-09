@@ -10,7 +10,7 @@ import glados.parser.DateTimeParser;
  * Test class for DateTimeParser.
  */
 public class DateTimeParserTest {
-    
+
     @Test
     public void parseToLocalDateTime_validInput_success() {
         String input1 = "25/12/2024 6:00 PM";

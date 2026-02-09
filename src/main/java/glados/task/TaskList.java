@@ -12,7 +12,7 @@ public class TaskList {
     private ArrayList<Task> tasks;
     private Storage storage;
 
-    /** 
+    /**
      * Gets the task at the specified index.
      * 
      * @param index The index of the task to retrieve.
@@ -22,17 +22,7 @@ public class TaskList {
         return this.tasks.get(index);
     }
 
-    /** 
-     * Test helper method to get the task at the specified index.
-     * 
-     * @param index The index of the task to retrieve.
-     * @return The Task object at the specified index.
-     */
-    public Task getTaskTest(int index) {
-        return this.getTask(index);
-    }
-
-    /** 
+    /**
      * Gets the size of the task list.
      * 
      * @return The number of tasks in the list.
@@ -41,7 +31,7 @@ public class TaskList {
         return this.tasks.size();
     }
 
-    /** 
+    /**
      * Constructor for TaskList class.
      * 
      * @param storage The Storage object to load tasks from.
@@ -61,8 +51,9 @@ public class TaskList {
         this.storage.saveTasks(this.tasks);
     }
 
-    /** 
-     * Removes a task from the task list by index and saves the updated list to storage.
+    /**
+     * Removes a task from the task list by index and saves the updated list to
+     * storage.
      * 
      * @param index The index of the task to be removed.
      * @return The Task object that was removed.
@@ -73,7 +64,7 @@ public class TaskList {
         return t;
     }
 
-    /** 
+    /**
      * Checks if a task is marked as done by index.
      * 
      * @param index The index of the task to check.
@@ -83,7 +74,7 @@ public class TaskList {
         return this.getTask(index).isDone();
     }
 
-    /** 
+    /**
      * Marks a task as done by index and saves the updated list to storage.
      * 
      * @param index The index of the task to be marked as done.
@@ -96,7 +87,7 @@ public class TaskList {
         return t;
     }
 
-    /** 
+    /**
      * Unmarks a task as not done by index and saves the updated list to storage.
      * 
      * @param index The index of the task to be unmarked as not done.
@@ -109,7 +100,7 @@ public class TaskList {
         return t;
     }
 
-    /** 
+    /**
      * Returns the string representation of the TaskList.
      */
     public String toString() {

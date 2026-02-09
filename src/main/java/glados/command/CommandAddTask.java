@@ -15,7 +15,7 @@ import glados.utils.Ui;
  * Command to add a task (Todo, Deadline, Event) to the task list.
  */
 public class CommandAddTask extends Command {
-    
+
     private TaskType type;
     private String description;
     private LocalDateTime dateTime;
@@ -25,7 +25,7 @@ public class CommandAddTask extends Command {
     /**
      * Constructor for Todo task command.
      * 
-     * @param type TaskType.Todo
+     * @param type        TaskType.Todo
      * @param description Description of the todo task
      */
     public CommandAddTask(TaskType type, String description) {
@@ -36,9 +36,9 @@ public class CommandAddTask extends Command {
     /**
      * Constructor for Deadline task command.
      * 
-     * @param type TaskType.DEADLINE
+     * @param type        TaskType.DEADLINE
      * @param description Description of the deadline task
-     * @param dateTime Deadline date and time
+     * @param dateTime    Deadline date and time
      */
     public CommandAddTask(TaskType type, String description, LocalDateTime dateTime) {
         this.type = type;
@@ -49,10 +49,10 @@ public class CommandAddTask extends Command {
     /**
      * Constructor for Event task command.
      * 
-     * @param type TaskType.EVENT
+     * @param type        TaskType.EVENT
      * @param description Description of the event task
-     * @param from Starting time of the event
-     * @param to Ending time of the event
+     * @param from        Starting time of the event
+     * @param to          Ending time of the event
      */
     public CommandAddTask(TaskType type, String description, String from, String to) {
         this.type = type;
@@ -65,12 +65,12 @@ public class CommandAddTask extends Command {
      * Executes the add task command.
      * 
      * @param tasks The task list
-     * @param ui The user interface
+     * @param ui    The user interface
      */
     @Override
     public void execute(TaskList tasks, Ui ui) throws GladosException {
         Task t;
-        switch(this.type) {
+        switch (this.type) {
             case TODO -> {
                 t = new Todo(this.description);
             }

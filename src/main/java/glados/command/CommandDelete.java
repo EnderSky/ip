@@ -9,7 +9,7 @@ import glados.utils.Ui;
  * Command to delete a task from the task list.
  */
 public class CommandDelete extends Command {
-    
+
     private int taskNumber;
 
     /**
@@ -25,7 +25,7 @@ public class CommandDelete extends Command {
      * Executes the delete command, removing the specified task from the task list.
      * 
      * @param tasks The task list from which to delete the task.
-     * @param ui The user interface for displaying messages.
+     * @param ui    The user interface for displaying messages.
      * @throws GladosException If the task number is invalid.
      */
     @Override

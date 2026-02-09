@@ -28,11 +28,11 @@ public class InputParser {
         if (input.equals("bye")) {
             return new CommandBye();
         }
-        
+
         if (input.equals("list")) {
             return new CommandList();
         }
-        
+
         if (input.startsWith("mark")) {
             if (!input.matches("mark \\d+")) {
                 throw new GladosException(Ui.getErrorIncorrectNumberFormat("mark"));
@@ -40,7 +40,7 @@ public class InputParser {
             int taskNumber = Integer.parseInt(input.split(" ")[1]);
             return new CommandMark(taskNumber, true);
         }
-        
+
         if (input.startsWith("unmark")) {
             if (!input.matches("unmark \\d+")) {
                 throw new GladosException(Ui.getErrorIncorrectNumberFormat("mark"));
@@ -48,7 +48,7 @@ public class InputParser {
             int taskNumber = Integer.parseInt(input.split(" ")[1]);
             return new CommandMark(taskNumber, false);
         }
-        
+
         if (input.startsWith("todo")) {
             if (!input.matches("todo .*")) {
                 throw new GladosException(Ui.getErrorIncorrectCommandFormat("todo", "todo <description>"));
@@ -61,7 +61,7 @@ public class InputParser {
 
             return new CommandAddTask(TaskType.TODO, description);
         }
-        
+
         if (input.startsWith("deadline")) {
             if (!input.matches("deadline .* /by .*")) {
                 throw new GladosException(Ui.getErrorIncorrectCommandFormat("deadline",
@@ -91,7 +91,7 @@ public class InputParser {
 
             return new CommandAddTask(TaskType.DEADLINE, description, dateTime);
         }
-        
+
         if (input.startsWith("event")) {
             if (!input.matches("event .* /from .* /to .*")) {
                 throw new GladosException(Ui.getErrorIncorrectCommandFormat("event",
@@ -119,7 +119,7 @@ public class InputParser {
             int taskNumber = Integer.parseInt(input.split(" ")[1]);
             return new CommandDelete(taskNumber);
         }
-        
+
         // Unknown command
         throw new GladosException(Ui.getErrorUnknownCommand());
     }

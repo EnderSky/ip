@@ -7,13 +7,13 @@ import glados.utils.Ui;
 /**
  * Parent class for all commands.
  */
-public abstract class Command {    
+public abstract class Command {
 
     /**
      * Executes the command.
      * 
      * @param tasks The task list
-     * @param ui The user interface
+     * @param ui    The user interface
      * @throws GladosException If an error occurs during execution
      */
     public abstract void execute(TaskList tasks, Ui ui) throws GladosException;

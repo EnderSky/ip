@@ -8,12 +8,12 @@ import glados.utils.Ui;
  * Command to list all tasks.
  */
 public class CommandList extends Command {
-    
+
     /**
      * Executes the list command to display all tasks.
      * 
      * @param tasks The TaskList containing all tasks.
-     * @param ui The Ui instance for user interaction.
+     * @param ui    The Ui instance for user interaction.
      * @throws GladosException If there are no tasks to list.
      */
     @Override

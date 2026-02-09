@@ -28,7 +28,7 @@ public class Glados {
         while (!isExit) {
             input = this.ui.getUserInput();
             Ui.showLine();
-            
+
             try {
                 Command cmd = InputParser.parseInput(input);
                 cmd.execute(this.taskList, this.ui);
@@ -46,7 +46,7 @@ public class Glados {
      * Initializes UI, Storage, and TaskList components.
      * 
      * @param filePath File path for storing tasks.
-     * @param logo Logo string to display on startup.
+     * @param logo     Logo string to display on startup.
      */
     public Glados(String filePath, String logo) {
         this.ui = new Ui(logo);
@@ -60,7 +60,7 @@ public class Glados {
      * @param args Command line arguments (not used).
      */
     public static void main(String[] args) {
-        final String filePath = "../../../data/tasks.txt";
+        final String FILEPATH = "../../../data/tasks.txt";
         final String LOGO = "  ____ _          ____   ___  ____  \r\n" + //
                 " / ___| |    __ _|  _ \\ / _ \\/ ___| \r\n" + //
                 "| |  _| |   / _` | | | | | | \\___ \\ \r\n" + //
@@ -68,7 +68,7 @@ public class Glados {
                 " \\____|_____\\__,_|____/ \\___/|____/ \r\n" + //
                 "                                       ";
 
-        Glados app = new Glados(filePath, LOGO);
+        Glados app = new Glados(FILEPATH, LOGO);
         app.run();
     }
 }

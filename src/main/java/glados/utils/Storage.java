@@ -30,7 +30,7 @@ public class Storage {
     public Storage(String filePath) {
         this.filePathString = filePath;
     }
-    
+
     /***
      * Loads tasks from the file at the specified file path.
      * 
@@ -58,8 +58,9 @@ public class Storage {
                             break;
                         case 'D':
                             String by = parts[3];
-                            
-                            // Parse by to LocalDateTime with format: DD MMM YYYY HH:mm am/pm (12-hour format)
+
+                            // Parse by to LocalDateTime with format: DD MMM YYYY HH:mm am/pm (12-hour
+                            // format)
                             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a");
                             LocalDateTime byDateTime = LocalDateTime.parse(by, formatter);
 
@@ -111,7 +112,7 @@ public class Storage {
         } catch (IOException e) {
             System.out.println("An error occurred while creating the file: " + e.getMessage());
         }
-        
+
         // Save tasks to file at filePath
         // Per row: <type> | <isDone> | <description> | <additionalInfo>
         try (BufferedWriter bufferedWriter = Files.newBufferedWriter(filePath)) {

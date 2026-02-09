@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * Test class for Event task.
  */
 public class EventTest {
-    
+
     @Test
     public void event_createEvent_success() {
         Event event = new Event("Project meeting", "2024-10-01 14:00", "2024-10-01 16:00");

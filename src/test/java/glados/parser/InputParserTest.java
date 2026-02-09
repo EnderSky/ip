@@ -11,11 +11,12 @@ import glados.command.CommandList;
 import glados.command.CommandMark;
 import glados.utils.Ui;
 import glados.utils.GladosException;
+
 /**
  * Test class for InputParser.
  */
 public class InputParserTest {
-    
+
     @Test
     public void parseInput_byeCommand_success() throws GladosException {
         Command command = InputParser.parseInput("bye");
