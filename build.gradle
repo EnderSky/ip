@@ -33,6 +33,7 @@ application {
 }
 
 shadowJar {
+    archiveFileName = 'glados.jar'
     archiveBaseName = "glados"
     archiveClassifier = null
 }
