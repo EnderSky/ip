@@ -10,6 +10,7 @@ import java.util.List;
  */
 public class DateTimeParser {
 
+    // List of supported date-time formats
     private static final List<DateTimeFormatter> FORMATTERS = List.of(
         DateTimeFormatter.ofPattern("d/M/yyyy h:mm a"), // eg. 25/12/2024 6:00 PM
         DateTimeFormatter.ofPattern("d/M/yyyy HHmm"), // eg. 2/1/2024 1800 (24-hour format)
@@ -38,7 +39,7 @@ public class DateTimeParser {
     public static LocalDateTime parseToLocalDateTime(String input) {
         for (DateTimeFormatter formatter : FORMATTERS) {
             try {
-                return LocalDateTime.parse(input, formatter);
+                return LocalDateTime.parse(input.toLowerCase(), formatter);
             } catch (DateTimeParseException ignored) {
                 // Try next format
             }

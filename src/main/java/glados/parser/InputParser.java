@@ -1,4 +1,5 @@
 package glados.parser;
+
 import java.time.LocalDateTime;
 
 import glados.command.Command;
@@ -14,17 +15,15 @@ import glados.utils.Ui;
 /**
  * InputParser class to handle user input parsing.
  */
-public enum InputParser {
-    BYE,
-    LIST,
-    MARK,
-    UNMARK,
-    TODO,
-    DEADLINE,
-    EVENT,
-    DELETE,
-    UNKNOWN;
+public class InputParser {
 
+    /**
+     * Parses the user input and returns the corresponding Command object.
+     *
+     * @param input The user input string.
+     * @return The Command object corresponding to the input.
+     * @throws GladosException If the input is invalid or cannot be parsed.
+     */
     public static Command parseInput(String input) throws GladosException {
         if (input.equals("bye")) {
             return new CommandBye();
@@ -85,7 +84,7 @@ public enum InputParser {
             LocalDateTime dateTime;
 
             try {
-                dateTime = DateTimeParser.parseToLocalDateTime(by.toLowerCase());
+                dateTime = DateTimeParser.parseToLocalDateTime(by);
             } catch (IllegalArgumentException e) {
                 throw new GladosException(Ui.getErrorInvalidDateTimeFormat(by));
             }
