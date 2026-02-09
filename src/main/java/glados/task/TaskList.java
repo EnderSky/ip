@@ -1,4 +1,5 @@
 package glados.task;
+
 import java.util.ArrayList;
 
 import glados.utils.Storage;
@@ -11,10 +12,31 @@ public class TaskList {
     private ArrayList<Task> tasks;
     private Storage storage;
 
+    /** 
+     * Gets the task at the specified index.
+     * 
+     * @param index The index of the task to retrieve.
+     * @return The Task object at the specified index.
+     */
     private Task getTask(int index) {
         return this.tasks.get(index);
     }
 
+    /** 
+     * Test helper method to get the task at the specified index.
+     * 
+     * @param index The index of the task to retrieve.
+     * @return The Task object at the specified index.
+     */
+    public Task getTaskTest(int index) {
+        return this.getTask(index);
+    }
+
+    /** 
+     * Gets the size of the task list.
+     * 
+     * @return The number of tasks in the list.
+     */
     public int getSize() {
         return this.tasks.size();
     }
@@ -51,6 +73,12 @@ public class TaskList {
         return t;
     }
 
+    /** 
+     * Checks if a task is marked as done by index.
+     * 
+     * @param index The index of the task to check.
+     * @return true if the task is marked as done, false otherwise.
+     */
     public Boolean isTaskMarked(int index) {
         return this.getTask(index).isDone();
     }
@@ -81,7 +109,9 @@ public class TaskList {
         return t;
     }
 
-    @Override
+    /** 
+     * Returns the string representation of the TaskList.
+     */
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < this.tasks.size(); i++) {

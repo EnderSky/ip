@@ -11,7 +11,11 @@ import glados.task.Todo;
 import glados.utils.GladosException;
 import glados.utils.Ui;
 
+/**
+ * Command to add a task (Todo, Deadline, Event) to the task list.
+ */
 public class CommandAddTask extends Command {
+    
     private TaskType type;
     private String description;
     private LocalDateTime dateTime;
@@ -21,7 +25,7 @@ public class CommandAddTask extends Command {
     /**
      * Constructor for Todo task command.
      * 
-     * @param type TaskType.todo
+     * @param type TaskType.Todo
      * @param description Description of the todo task
      */
     public CommandAddTask(TaskType type, String description) {
@@ -57,6 +61,12 @@ public class CommandAddTask extends Command {
         this.to = to;
     }
 
+    /**
+     * Executes the add task command.
+     * 
+     * @param tasks The task list
+     * @param ui The user interface
+     */
     @Override
     public void execute(TaskList tasks, Ui ui) throws GladosException {
         Task t;

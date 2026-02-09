@@ -1,12 +1,6 @@
 package glados.utils;
 
 import java.util.ArrayList;
-
-import glados.task.Deadline;
-import glados.task.Event;
-import glados.task.Task;
-import glados.task.Todo;
-
 import java.io.BufferedWriter;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,6 +9,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import glados.task.Deadline;
+import glados.task.Event;
+import glados.task.Task;
+import glados.task.Todo;
 
 /***
  * Handles loading and saving of tasks to and from the file system.
