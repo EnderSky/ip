@@ -1,14 +1,14 @@
 package glados.utils;
 
-import java.util.ArrayList;
-import java.io.BufferedWriter;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 import glados.task.Deadline;
 import glados.task.Event;
@@ -24,7 +24,7 @@ public class Storage {
 
     /***
      * Constructor for Storage class.
-     * 
+     *
      * @param filePath The file path where tasks are stored.
      */
     public Storage(String filePath) {
@@ -33,7 +33,7 @@ public class Storage {
 
     /***
      * Loads tasks from the file at the specified file path.
-     * 
+     *
      * @return An ArrayList of Task objects loaded from the file.
      */
     public ArrayList<Task> loadTasks() {
@@ -92,7 +92,7 @@ public class Storage {
 
     /***
      * Saves the given list of tasks to the file at the specified file path.
-     * 
+     *
      * @param tasks The ArrayList of Task objects to be saved.
      */
     public void saveTasks(ArrayList<Task> tasks) {

@@ -24,7 +24,7 @@ public class Deadline extends Task {
 
     /**
      * Gets the due date and time of the deadline.
-     * 
+     *
      * @return Formatted due date and time as a string.
      */
     @Override

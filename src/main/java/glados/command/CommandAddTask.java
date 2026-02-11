@@ -24,7 +24,7 @@ public class CommandAddTask extends Command {
 
     /**
      * Constructor for Todo task command.
-     * 
+     *
      * @param type        TaskType.Todo
      * @param description Description of the todo task
      */
@@ -35,7 +35,7 @@ public class CommandAddTask extends Command {
 
     /**
      * Constructor for Deadline task command.
-     * 
+     *
      * @param type        TaskType.DEADLINE
      * @param description Description of the deadline task
      * @param dateTime    Deadline date and time
@@ -48,7 +48,7 @@ public class CommandAddTask extends Command {
 
     /**
      * Constructor for Event task command.
-     * 
+     *
      * @param type        TaskType.EVENT
      * @param description Description of the event task
      * @param from        Starting time of the event
@@ -63,7 +63,7 @@ public class CommandAddTask extends Command {
 
     /**
      * Executes the add task command.
-     * 
+     *
      * @param tasks The task list
      * @param ui    The user interface
      */

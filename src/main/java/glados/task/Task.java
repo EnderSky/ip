@@ -22,7 +22,7 @@ public class Task {
 
     /**
      * Gets the status icon of the task.
-     * 
+     *
      * @return "X" if done, " " if not done.
      */
     public String getStatusIcon() {
@@ -55,7 +55,7 @@ public class Task {
 
     /**
      * Gets the type of the task.
-     * 
+     *
      * @return Character representing the task type.
      */
     public char getType() {
@@ -64,7 +64,7 @@ public class Task {
 
     /**
      * Checks if the task is done.
-     * 
+     *
      * @return true if the task is done, false otherwise.
      */
     public boolean isDone() {
@@ -73,7 +73,7 @@ public class Task {
 
     /**
      * Checks if the task description contains the given keyword.
-     * 
+     *
      * @param keyword The keyword to search for.
      * @return true if the description contains the keyword, false otherwise.
      */
@@ -83,7 +83,7 @@ public class Task {
 
     /**
      * Gets the description of the task.
-     * 
+     *
      * @return Description string.
      */
     public String getDescription() {
@@ -92,7 +92,7 @@ public class Task {
 
     /**
      * Gets additional information about the task.
-     * 
+     *
      * @return Additional info string, or null if none.
      */
     public String getAdditionalInfo() {

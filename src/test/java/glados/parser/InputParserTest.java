@@ -1,16 +1,17 @@
 package glados.parser;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 import glados.command.Command;
 import glados.command.CommandAddTask;
 import glados.command.CommandBye;
 import glados.command.CommandList;
 import glados.command.CommandMark;
-import glados.utils.Ui;
 import glados.utils.GladosException;
+import glados.utils.Ui;
 
 /**
  * Test class for InputParser.
@@ -36,7 +37,7 @@ public class InputParserTest {
     }
 
     @Test
-    public void parseInput_markCommand_incorrectFormat_throwsException() {
+    public void parseInput_markCommandIncorrectFormat_throwsException() {
         String input = "mark two";
         try {
             InputParser.parseInput(input);
@@ -58,7 +59,7 @@ public class InputParserTest {
     }
 
     @Test
-    public void parseInput_todoCommand_emptyDescription_throwsException() {
+    public void parseInput_todoCommandEmptyDescription_throwsException() {
         String input = "todo   ";
         try {
             InputParser.parseInput(input);
@@ -68,7 +69,7 @@ public class InputParserTest {
     }
 
     @Test
-    public void parseInput_todoCommand_incorrectFormat_throwsException() {
+    public void parseInput_todoCommandIncorrectFormat_throwsException() {
         String input = "todo";
         try {
             InputParser.parseInput(input);

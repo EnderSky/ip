@@ -13,8 +13,18 @@ public class TaskList {
     private Storage storage;
 
     /**
+     * Constructor for TaskList class.
+     *
+     * @param storage The Storage object to load tasks from.
+     */
+    public TaskList(Storage storage) {
+        this.storage = storage;
+        this.tasks = this.storage.loadTasks();
+    }
+
+    /**
      * Gets the task at the specified index.
-     * 
+     *
      * @param index The index of the task to retrieve.
      * @return The Task object at the specified index.
      */
@@ -24,7 +34,7 @@ public class TaskList {
 
     /**
      * Gets the size of the task list.
-     * 
+     *
      * @return The number of tasks in the list.
      */
     public int getSize() {
@@ -32,18 +42,8 @@ public class TaskList {
     }
 
     /**
-     * Constructor for TaskList class.
-     * 
-     * @param storage The Storage object to load tasks from.
-     */
-    public TaskList(Storage storage) {
-        this.storage = storage;
-        this.tasks = this.storage.loadTasks();
-    }
-
-    /**
      * Adds a task to the task list and saves it to storage.
-     * 
+     *
      * @param task The Task object to be added.
      */
     public void addTask(Task task) {
@@ -54,7 +54,7 @@ public class TaskList {
     /**
      * Removes a task from the task list by index and saves the updated list to
      * storage.
-     * 
+     *
      * @param index The index of the task to be removed.
      * @return The Task object that was removed.
      */
@@ -66,7 +66,7 @@ public class TaskList {
 
     /**
      * Checks if a task is marked as done by index.
-     * 
+     *
      * @param index The index of the task to check.
      * @return true if the task is marked as done, false otherwise.
      */
@@ -76,7 +76,7 @@ public class TaskList {
 
     /**
      * Marks a task as done by index and saves the updated list to storage.
-     * 
+     *
      * @param index The index of the task to be marked as done.
      * @return The Task object that was marked as done.
      */
@@ -89,7 +89,7 @@ public class TaskList {
 
     /**
      * Unmarks a task as not done by index and saves the updated list to storage.
-     * 
+     *
      * @param index The index of the task to be unmarked as not done.
      * @return The Task object that was unmarked as not done.
      */

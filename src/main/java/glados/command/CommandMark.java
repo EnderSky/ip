@@ -26,7 +26,7 @@ public class CommandMark extends Command {
 
     /**
      * Executes the mark or unmark command on the specified task.
-     * 
+     *
      * @param tasks The task list containing the task to be marked or unmarked.
      * @param ui    The user interface for displaying messages.
      * @throws GladosException If the task number is invalid or if the task is

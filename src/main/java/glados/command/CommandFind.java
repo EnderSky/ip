@@ -14,7 +14,7 @@ public class CommandFind extends Command {
 
     /**
      * Constructor for CommandFind class.
-     * 
+     *
      * @param keyword The keyword to search for in tasks.
      */
     public CommandFind(String keyword) {
@@ -23,7 +23,7 @@ public class CommandFind extends Command {
 
     /**
      * Executes the find command to search for tasks containing the keyword.
-     * 
+     *
      * @param tasks The task list
      * @param ui    The user interface
      * @throws GladosException If an error occurs during execution

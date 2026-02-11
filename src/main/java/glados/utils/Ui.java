@@ -14,8 +14,8 @@ public class Ui {
     /**
      * Constructor for Ui class.
      * Initializes the logo and scanner.
-     * 
-     * @param logo
+     *
+     * @param logo The logo string to display.
      */
     public Ui(String logo) {
         this.logo = logo;
@@ -71,7 +71,7 @@ public class Ui {
 
     /**
      * Displays a message when a task is added.
-     * 
+     *
      * @param taskString String representation of the added task.
      * @param totalTasks Total number of tasks after addition.
      */
@@ -87,7 +87,7 @@ public class Ui {
 
     /**
      * Displays a success message when a task is marked as done.
-     * 
+     *
      * @param taskNumber number of the task marked as done
      * @param taskString string representation of the task marked as done
      */
@@ -98,7 +98,7 @@ public class Ui {
 
     /**
      * Displays a success message when a task is unmarked as not done.
-     * 
+     *
      * @param taskNumber number of the task unmarked as not done
      * @param taskString string representation of the task unmarked as not done
      */
@@ -109,7 +109,7 @@ public class Ui {
 
     /**
      * Displays a success message when a task is deleted.
-     * 
+     *
      * @param taskNumber number of the task deleted
      * @param taskString string representation of the task deleted
      * @param totalTasks total number of tasks after deletion
@@ -126,7 +126,7 @@ public class Ui {
 
     /**
      * Displays the found tasks containing the keyword.
-     * 
+     *
      * @param foundTasks String representation of found tasks.
      * @param count      Number of found tasks.
      * @param keyword    The keyword searched for.
@@ -142,7 +142,7 @@ public class Ui {
 
     /**
      * Displays a custom error message.
-     * 
+     *
      * @param message the error message to display
      */
     public void showError(String message) {
@@ -153,13 +153,13 @@ public class Ui {
      * Returns an error message for empty task list.
      */
     public static String getErrorEmptyList() {
-        return "Your task list is currently empty.\n" +
-                "Add tasks using the following commands: todo, deadline, event.";
+        return "Your task list is currently empty.\n"
+                + "Add tasks using the following commands: todo, deadline, event.";
     }
 
     /**
      * Returns an error message for incorrect format when marking a task.
-     * 
+     *
      * @param taskName name of the task (mark / unmark)
      */
     public static String getErrorIncorrectNumberFormat(String taskName) {
@@ -177,7 +177,7 @@ public class Ui {
 
     /**
      * Returns an error message for incorrect command format.
-     * 
+     *
      * @param commandName   name of the command
      * @param correctFormat the correct format for the command
      */
@@ -187,7 +187,7 @@ public class Ui {
 
     /**
      * Returns an error message for invalid task number.
-     * 
+     *
      * @param taskName name of the task (mark / unmark / delete)
      * @param listSize size of the current task list
      */
@@ -204,7 +204,7 @@ public class Ui {
 
     /**
      * Returns an error message for empty input.
-     * 
+     *
      * @param text The text that cannot be empty.
      */
     public static String getErrorEmpty(String text) {
@@ -213,26 +213,26 @@ public class Ui {
 
     /**
      * Returns an error message for invalid date/time format.
-     * 
+     *
      * @param dateTimeInput The invalid date/time input string.
      */
     public static String getErrorInvalidDateTimeFormat(String dateTimeInput) {
-        return "Invalid date/time format: " + dateTimeInput + "\n" +
-                "Please use one of the following formats:\n" +
-                "- DD/MM/YYYY HH:MM AM/PM (12-hour) or HHMM (24-hour)\n" +
-                "- DD MMM YYYY HH:MM AM/PM (12-hour) or HHMM (24-hour)\n" +
-                "- YYYY-MM-DD HH:MM AM/PM (12-hour) or HHMM (24-hour)\n" +
-                "- Examples: 2/1/2024 6:00 PM, 2 Dec 2024 1830, 2024-12-25 08:00 am";
+        return "Invalid date/time format: " + dateTimeInput + "\n"
+                + "Please use one of the following formats:\n"
+                + "- DD/MM/YYYY HH:MM AM/PM (12-hour) or HHMM (24-hour)\n"
+                + "- DD MMM YYYY HH:MM AM/PM (12-hour) or HHMM (24-hour)\n"
+                + "- YYYY-MM-DD HH:MM AM/PM (12-hour) or HHMM (24-hour)\n"
+                + "- Examples: 2/1/2024 6:00 PM, 2 Dec 2024 1830, 2024-12-25 08:00 am";
     }
 
     /**
      * Returns an error message for unknown command.
      */
     public static String getErrorUnknownCommand() {
-        return "I'm sorry, I don't recognize that command.\n" +
-                "Valid commands are: list, mark <number>, unmark <number>, delete <number>, bye, \n" +
-                "                    todo <description>, \n" +
-                "                    deadline <description> /by <date/time>, \n" +
-                "                    event <description> /from <from> /to <to>";
+        return "I'm sorry, I don't recognize that command.\n"
+                + "Valid commands are: list, mark <number>, unmark <number>, delete <number>, bye, \n"
+                + "                    todo <description>, \n"
+                + "                    deadline <description> /by <date/time>, \n"
+                + "                    event <description> /from <from> /to <to>";
     }
 }

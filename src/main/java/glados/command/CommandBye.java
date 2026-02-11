@@ -11,7 +11,7 @@ public class CommandBye extends Command {
 
     /**
      * Executes the bye command.
-     * 
+     *
      * @param tasks the task list
      * @param ui    the user interface
      */
@@ -22,7 +22,7 @@ public class CommandBye extends Command {
 
     /**
      * Indicates that this command exits the program.
-     * 
+     *
      * @return true to indicate exit
      */
     @Override
