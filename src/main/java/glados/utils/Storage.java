@@ -46,39 +46,11 @@ public class Storage {
                 // Read file line by line and create Task objects
                 String line;
                 while ((line = bufferedReader.readLine()) != null) {
-                    String[] parts = line.split(" \\| ");
-                    char type = parts[0].charAt(0);
-                    boolean isDone = parts[1].equals("1");
-                    String description = parts[2];
-                    Task task = null;
+                    Task task = parseTaskFromLine(line);
 
-                    switch (type) {
-                        case 'T':
-                            task = new Todo(description);
-                            break;
-                        case 'D':
-                            String by = parts[3];
-
-                            // Parse by to LocalDateTime with format: DD MMM YYYY HH:mm am/pm (12-hour
-                            // format)
-                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a");
-                            LocalDateTime byDateTime = LocalDateTime.parse(by, formatter);
-
-                            task = new Deadline(description, byDateTime);
-                            break;
-                        case 'E':
-                            String from = parts[3];
-                            String to = parts[4];
-                            task = new Event(description, from, to);
-                            break;
-                        default:
-                            System.out.println("Unknown task type: " + type);
-                    }
+                    assert task != null : "Task should not be null after parsing";
 
                     if (task != null) {
-                        if (isDone) {
-                            task.markAsDone();
-                        }
                         tasks.add(task);
                     }
                 }
@@ -88,6 +60,35 @@ public class Storage {
         }
 
         return tasks;
+    }
+
+    private Task parseTaskFromLine(String line) {
+        Task task = null;
+        String[] parts = line.split(" \\| ");
+        assert parts.length >= 3 : "Line should have at least 3 parts separated by ' | '";
+        char type = parts[0].charAt(0);
+        boolean isDone = parts[1].equals("1");
+        String description = parts[2];
+        switch (type) {
+            case 'T' -> task = new Todo(description);
+            case 'D' -> {
+                String by = parts[3];
+                // Parse by to LocalDateTime with format: DD MMM YYYY HH:mm am/pm (12-hour)
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a");
+                LocalDateTime byDateTime = LocalDateTime.parse(by, formatter);
+                task = new Deadline(description, byDateTime);
+            }
+            case 'E' -> {
+                String from = parts[3];
+                String to = parts[4];
+                task = new Event(description, from, to);
+            }
+            default -> System.out.println("Unknown task type: " + type);
+        }
+        if (isDone) {
+            task.markAsDone();
+        }
+        return task;
     }
 
     /***
