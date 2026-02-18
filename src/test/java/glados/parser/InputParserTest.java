@@ -84,7 +84,7 @@ public class InputParserTest {
         try {
             InputParser.parseInput(input);
         } catch (GladosException e) {
-            assertEquals(Ui.getErrorUnknownCommand(), e.getMessage());
+            assertEquals(Ui.getErrorUnknownCommand(input), e.getMessage());
         }
     }
 }

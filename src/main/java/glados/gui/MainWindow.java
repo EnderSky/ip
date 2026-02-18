@@ -68,7 +68,7 @@ public class MainWindow extends AnchorPane {
             // Close the application after a short delay
             new Thread(() -> {
                 try {
-                    Thread.sleep(2000); // Wait for 2 seconds before closing
+                    Thread.sleep(1250); // Wait for 1.25 seconds before closing
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

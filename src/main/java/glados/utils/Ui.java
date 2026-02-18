@@ -242,16 +242,23 @@ public class Ui {
     /**
      * Returns an error message for unknown command.
      */
-    public static String getErrorUnknownCommand() {
-        return "I'm sorry, I don't recognize that command.\n"
-                + "Valid commands: \n"
-                + "- list\n"
-                + "- mark <number>\n"
-                + "- unmark <number>\n"
-                + "- delete <number>\n"
-                + "- bye\n"
-                + "- todo <description>, \n"
-                + "- deadline <description> /by <date/time>, \n"
-                + "- event <description> /from <from> /to <to>";
+    public static String getErrorUnknownCommand(String input) {
+        return "I'm sorry, I don't recognize the command: " + input + ".\n"
+                + "Type 'help' to see the list of available commands.";
+    }
+
+    public static String getHelpString() {
+        return "Here are the available commands:\n"
+                + "- help: Show this help message.\n"
+                + "- list: Show all tasks in the list.\n"
+                + "- mark <number>: Mark a task as done by its number in the list.\n"
+                + "- unmark <number>: Mark a task as not done by its number in the list.\n"
+                + "- delete <number>: Delete a task by its number in the list.\n"
+                + "- find <keyword>: Find tasks containing the keyword.\n"
+                + "- remindme: Sort and show deadlines.\n"
+                + "- todo <description>: Add a todo task with the given description.\n"
+                + "- deadline <description> /by <date/time>: Add a deadline task with the given description and due date/time.\n"
+                + "- event <description> /from <from> /to <to>: Add an event task with the given description, start date/time, and end date/time."
+                + "- bye: Exit the application.\n";
     }
 }

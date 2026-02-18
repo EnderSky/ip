@@ -7,6 +7,7 @@ import glados.command.CommandAddTask;
 import glados.command.CommandBye;
 import glados.command.CommandDelete;
 import glados.command.CommandFind;
+import glados.command.CommandHelp;
 import glados.command.CommandList;
 import glados.command.CommandMark;
 import glados.command.CommandRemindMe;
@@ -29,6 +30,8 @@ public class InputParser {
     public static Command parseInput(String input) throws GladosException {
         if (input.equals("bye")) {
             return new CommandBye();
+        } else if (input.equals("help")) {
+            return new CommandHelp();
         } else if (input.equals("list")) {
             return new CommandList();
         } else if (input.equals("remindme")) {
@@ -50,7 +53,7 @@ public class InputParser {
         }
 
         // Unknown command
-        throw new GladosException(Ui.getErrorUnknownCommand());
+        throw new GladosException(Ui.getErrorUnknownCommand(input));
     }
 
     private static Command parseMarkCommand(String input, boolean isMark) throws GladosException {
