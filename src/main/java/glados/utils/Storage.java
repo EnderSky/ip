@@ -54,9 +54,11 @@ public class Storage {
 
                     switch (type) {
                         case 'T':
+                            assert parts.length == 3 : "Todo task should have exactly 3 parts";
                             task = new Todo(description);
                             break;
                         case 'D':
+                            assert parts.length == 4 : "Deadline task should have exactly 4 parts";
                             String by = parts[3];
 
                             // Parse by to LocalDateTime with format: DD MMM YYYY HH:mm am/pm (12-hour
@@ -67,6 +69,7 @@ public class Storage {
                             task = new Deadline(description, byDateTime);
                             break;
                         case 'E':
+                            assert parts.length == 5 : "Event task should have exactly 5 parts";
                             String from = parts[3];
                             String to = parts[4];
                             task = new Event(description, from, to);
