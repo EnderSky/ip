@@ -15,14 +15,6 @@ public class CommandRemindMe extends Command {
 
     @Override
     public String execute(TaskList tasks, Ui ui) throws GladosException {
-        // Do the following with Java streams
-        // 1. Filter all tasks to only include Deadline tasks
-        // 2. Sort the Deadline tasks by their deadline in ascending order
-        // 3. Group the tasks by the following groups: overdue, today, within the next
-        // week, far future
-        // 4. Map the groups to a string representation
-        // 5. Format the string representation of the groups into a final message to be
-        // returned to the user
         StringBuilder messageBuilder = new StringBuilder();
         messageBuilder.append("Here are your upcoming deadlines:\n\n");
 
@@ -44,6 +36,16 @@ public class CommandRemindMe extends Command {
     }
 
     private String formatDeadlineGroup(String groupName, Stream<Task> taskStream, TaskList tasks) {
+        // AI Assisted (Tool: GitHub Copilot)
+        // The prompt is given below:
+        // Do the following with Java streams
+        // 1. Filter all tasks to only include Deadline tasks
+        // 2. Sort the Deadline tasks by their deadline in ascending order
+        // 3. Group the tasks by the following groups: overdue, today, within the next
+        // week, far future
+        // 4. Map the groups to a string representation
+        // 5. Format the string representation of the groups into a final message to be
+        // returned to the user
         StringBuilder sb = new StringBuilder();
         sb.append(groupName).append(":\n");
         tasks.getTasks().stream()
