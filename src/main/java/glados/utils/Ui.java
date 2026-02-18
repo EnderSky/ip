@@ -26,7 +26,8 @@ public class Ui {
      * Prints a horizontal line to the console for formatting.
      */
     public static void showLine() {
-        String lineChar = "-"; // alternative if Unicode is supported: "\u2500"
+        // String lineChar = "\u2500";
+        String lineChar = "-";
         for (int i = 0; i < 83; i++) {
             System.out.print(lineChar);
         }
