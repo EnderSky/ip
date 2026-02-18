@@ -7,6 +7,7 @@ import glados.task.Deadline;
 import java.util.stream.Stream;
 import glados.task.Task;
 import java.util.List;
+import glados.task.DeadlineCategory;
 
 /**
  * Command to remind the user of their tasks with upcoming deadlines.
@@ -16,7 +17,7 @@ public class CommandRemindMe extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui) throws GladosException {
         StringBuilder messageBuilder = new StringBuilder();
-        messageBuilder.append("Here are your upcoming deadlines:\n\n");
+        messageBuilder.append("Here are your upcoming deadlines:\n");
 
         // Return message in the following format
         // Overdue:
@@ -28,14 +29,13 @@ public class CommandRemindMe extends Command {
         // 1. [D][ ] Prepare presentation (by: 22 Jan 2026 02:00 PM) - Due Within a Week
         // Due in the Future:
         // 2. [D][ ] Plan vacation (by: 20 Jan 2027)
-        List<String> groups = List.of("Overdue", "Due Today", "Due Within a Week", "Due in the Future");
-        for (String group : groups) {
+        for (DeadlineCategory group : DeadlineCategory.values()) {
             messageBuilder.append(formatDeadlineGroup(group, tasks.getTasks().stream(), tasks)).append("\n");
         }
         return messageBuilder.toString();
     }
 
-    private String formatDeadlineGroup(String groupName, Stream<Task> taskStream, TaskList tasks) {
+    private String formatDeadlineGroup(DeadlineCategory category, Stream<Task> taskStream, TaskList tasks) {
         // AI Assisted (Tool: GitHub Copilot)
         // The prompt is given below:
         // Do the following with Java streams
@@ -47,7 +47,7 @@ public class CommandRemindMe extends Command {
         // 5. Format the string representation of the groups into a final message to be
         // returned to the user
         StringBuilder sb = new StringBuilder();
-        sb.append(groupName).append(":\n");
+        sb.append("\n").append(category.toString());
         tasks.getTasks().stream()
                 .filter(task -> task.getType() == 'D')
                 .sorted((t1, t2) -> {
@@ -56,9 +56,9 @@ public class CommandRemindMe extends Command {
                     return ((Deadline) t1).getBy().compareTo(((Deadline) t2).getBy());
                 }).filter(task -> {
                     Deadline deadlineTask = (Deadline) task;
-                    return deadlineTask.getDeadlineStatus().equals(groupName);
+                    return deadlineTask.getDeadlineStatus().equals(category);
                 }).forEach(task -> {
-                    sb.append(tasks.getTasks().indexOf(task) + 1).append(". ").append(task.toString()).append("\n");
+                    sb.append("\n").append(tasks.getTasks().indexOf(task) + 1).append(". ").append(task.toString());
                 });
         return sb.toString();
     }

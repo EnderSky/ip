@@ -38,16 +38,16 @@ public class Deadline extends Task {
      * @return A string representing the deadline status (Overdue, Due Today, Due
      *         Within a Week, Due in the Future).
      */
-    public String getDeadlineStatus() {
+    public DeadlineCategory getDeadlineStatus() {
         LocalDateTime now = LocalDateTime.now();
         if (this.by.isBefore(now)) {
-            return "Overdue";
+            return DeadlineCategory.OVERDUE;
         } else if (this.by.toLocalDate().isEqual(now.toLocalDate())) {
-            return "Due Today";
+            return DeadlineCategory.DUE_TODAY;
         } else if (this.by.isBefore(now.plusDays(7))) {
-            return "Due Within a Week";
+            return DeadlineCategory.DUE_WITHIN_A_WEEK;
         } else {
-            return "Due in the Future";
+            return DeadlineCategory.DUE_IN_THE_FUTURE;
         }
     }
 
