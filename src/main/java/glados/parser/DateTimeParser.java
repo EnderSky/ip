@@ -18,7 +18,7 @@ public class DateTimeParser {
             DateTimeFormatter.ofPattern("d/M/yyyy HHmm"), // eg. 2/1/2024 1800 (24-hour format)
 
             DateTimeFormatter.ofPattern("yyyy-M-d h:mm a"), // eg. 2024-12-25 06:00 AM
-            DateTimeFormatter.ofPattern("yyyy-M-d h:mma"), // eg. 2024-12-25 06:00 AM
+            DateTimeFormatter.ofPattern("yyyy-M-d h:mma"), // eg. 2024-12-25 06:00AM
             DateTimeFormatter.ofPattern("yyyy-M-d HHmm"), // eg. 2024-1-5 0800 (24-hour format)
 
             new DateTimeFormatterBuilder()
