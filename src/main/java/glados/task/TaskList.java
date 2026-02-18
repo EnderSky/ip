@@ -29,6 +29,7 @@ public class TaskList {
      * @return The Task object at the specified index.
      */
     public Task getTaskByIndex(int index) {
+        assert index >= 0 && index < this.tasks.size() : "Index should be within the bounds of the task list";
         return this.tasks.get(index);
     }
 
@@ -81,6 +82,7 @@ public class TaskList {
      * @return The Task object that was marked as done.
      */
     public Task markTaskAsDone(int index) {
+        assert index >= 0 && index < this.tasks.size() : "Index should be within the bounds of the task list";
         Task t = this.getTaskByIndex(index);
         t.markAsDone();
         this.storage.saveTasks(this.tasks);
@@ -94,6 +96,7 @@ public class TaskList {
      * @return The Task object that was unmarked as not done.
      */
     public Task unmarkTaskAsNotDone(int index) {
+        assert index >= 0 && index < this.tasks.size() : "Index should be within the bounds of the task list";
         Task t = this.getTaskByIndex(index);
         t.unmarkAsNotDone();
         this.storage.saveTasks(this.tasks);
