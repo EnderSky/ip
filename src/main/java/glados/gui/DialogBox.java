@@ -1,71 +1,81 @@
 package glados.gui;
 
+import java.io.IOException;
+import java.util.Collections;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.Node;
 
 /**
  * DialogBox class to represent a dialog box in the GLaDOS GUI application.
  */
 public class DialogBox extends HBox {
 
-    private Label text;
+    @FXML
+    private Label dialog;
+    @FXML
     private ImageView displayPicture;
 
     /**
      * Constructor for DialogBox.
      *
-     * @param s The text to display in the dialog box.
-     * @param i The image to display in the dialog box.
+     * @param text The text to be displayed in the dialog box.
+     * @param img  The image to be displayed in the dialog box.
      */
-    public DialogBox(String s, Image i) {
-        text = new Label(s);
-        displayPicture = new ImageView(i);
+    private DialogBox(String text, Image img) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
+            fxmlLoader.setController(this);
+            fxmlLoader.setRoot(this);
+            fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        //Styling the dialog box
-        text.setWrapText(true);
-        displayPicture.setFitWidth(100.0);
-        displayPicture.setFitHeight(100.0);
-        this.setAlignment(Pos.TOP_RIGHT);
-
-        this.getChildren().addAll(text, displayPicture);
+        dialog.setText(text);
+        displayPicture.setImage(img);
     }
 
     /**
-     * Flips the dialog box such that the ImageView is on the left and text on the right.
+     * Flips the dialog box such that the ImageView is on the left and text on the
+     * right.
      */
     private void flip() {
-        this.setAlignment(Pos.TOP_LEFT);
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
-        FXCollections.reverse(tmp);
-        this.getChildren().setAll(tmp);
+        Collections.reverse(tmp);
+        getChildren().setAll(tmp);
+        setAlignment(Pos.TOP_LEFT);
     }
 
     /**
-     * Factory method to create a DialogBox for user input.
+     * Factory method to create a DialogBox for GLaDOS's response. Flips the dialog
+     * box so that the image is on the left and text on the right.
      *
-     * @param s The text to display in the dialog box.
-     * @param i The image to display in the dialog box.
-     * @return A DialogBox instance representing user input.
+     * @param text The text to be displayed in the dialog box.
+     * @param img  The image to be displayed in the dialog box.
+     * @return A DialogBox instance with the specified text and image, flipped.
      */
-    public static DialogBox getUserDialog(String s, Image i) {
-        return new DialogBox(s, i);
+    public static DialogBox getUserDialog(String text, Image img) {
+        return new DialogBox(text, img);
     }
 
     /**
-     * Factory method to create a DialogBox for GLaDOS response.
+     * Factory method to create a DialogBox for GLaDOS's response. Flips the dialog
+     * box so that the image is on the left and text on the right.
      *
-     * @param s The text to display in the dialog box.
-     * @param i The image to display in the dialog box.
-     * @return A DialogBox instance representing GLaDOS response.
+     * @param text The text to be displayed in the dialog box.
+     * @param img  The image to be displayed in the dialog box.
+     * @return A DialogBox instance with the specified text and image, flipped.
      */
-    public static DialogBox getGladosDialog(String s, Image i) {
-        var db = new DialogBox(s, i);
+    public static DialogBox getGladosDialog(String text, Image img) {
+        var db = new DialogBox(text, img);
         db.flip();
         return db;
     }

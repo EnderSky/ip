@@ -35,25 +35,6 @@ public class Ui {
     }
 
     /**
-     * Displays the welcome message to the user.
-     */
-    public void showWelcomeMessage() {
-        System.out.println(logo);
-        System.out.println("Hello, and again, welcome to the Aperture Science Computer-Aided Enrichment Center.");
-        System.out.println("What can I do for you today?");
-        Ui.showLine();
-    }
-
-    /**
-     * Displays the exit message to the user.
-     */
-    public void showGoodbyeMessage() {
-        this.scanner.close();
-        System.out.println("Goodbye. Thank you for participating in this Aperture Science test.");
-        System.out.println("Remember, the cake is a lie.");
-    }
-
-    /**
      * Prompts the user for input.
      */
     public String getUserInput() {
@@ -62,11 +43,35 @@ public class Ui {
     }
 
     /**
+     * Displays a message to the user.
+     *
+     * @param message The message to display.
+     */
+    public void showMessage(String message) {
+        System.out.println(message);
+    }
+
+    /**
+     * Displays the welcome message to the user.
+     */
+    public String getWelcomeMessage() {
+        return logo + "\nHello, and again, welcome to the Aperture Science Computer-Aided Enrichment Center.\n"
+                + "What can I do for you today?";
+    }
+
+    /**
+     * Displays the exit message to the user.
+     */
+    public String getGoodbyeMessage() {
+        this.scanner.close();
+        return "Goodbye. Thank you for participating in this Aperture Science test.\nRemember, the cake is a lie.";
+    }
+
+    /**
      * Displays the list of tasks to the user.
      */
-    public void showTasks(String tasks) {
-        System.out.println("Here are the tasks in your list:");
-        System.out.println(tasks);
+    public String getShowTasksMessage(String tasks) {
+        return "Here are the tasks in your list:\n" + tasks;
     }
 
     /**
@@ -75,14 +80,16 @@ public class Ui {
      * @param taskString String representation of the added task.
      * @param totalTasks Total number of tasks after addition.
      */
-    public void showAddTaskMessage(String taskString, int totalTasks) {
-        System.out.println("Got it. I've added this task:");
-        System.out.println("  " + taskString);
+    public String getAddTaskMessage(String taskString, int totalTasks) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Got it. I've added this task:\n");
+        sb.append("  " + taskString + "\n");
         if (totalTasks == 1) {
-            System.out.println("Now you have 1 task in the list.");
+            sb.append("Now you have 1 task in the list.\n");
         } else {
-            System.out.println("Now you have " + totalTasks + " tasks in the list.");
+            sb.append("Now you have " + totalTasks + " tasks in the list.\n");
         }
+        return sb.toString();
     }
 
     /**
@@ -91,9 +98,11 @@ public class Ui {
      * @param taskNumber number of the task marked as done
      * @param taskString string representation of the task marked as done
      */
-    public void showSuccessMark(int taskNumber, String taskString) {
-        System.out.println("Nice! I've marked task " + taskNumber + " as done:");
-        System.out.println("  " + taskString);
+    public String getSuccessMark(int taskNumber, String taskString) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Nice! I've marked task " + taskNumber + " as done:\n");
+        sb.append("  " + taskString + "\n");
+        return sb.toString();
     }
 
     /**
@@ -102,9 +111,11 @@ public class Ui {
      * @param taskNumber number of the task unmarked as not done
      * @param taskString string representation of the task unmarked as not done
      */
-    public void showSuccessUnmark(int taskNumber, String taskString) {
-        System.out.println("OK, I've marked task " + taskNumber + " as not done yet:");
-        System.out.println("  " + taskString);
+    public String getSuccessUnmark(int taskNumber, String taskString) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("OK, I've marked task " + taskNumber + " as not done yet:\n");
+        sb.append("  " + taskString + "\n");
+        return sb.toString();
     }
 
     /**
@@ -114,14 +125,16 @@ public class Ui {
      * @param taskString string representation of the task deleted
      * @param totalTasks total number of tasks after deletion
      */
-    public void showSuccessDelete(int taskNumber, String taskString, int totalTasks) {
-        System.out.println("Noted. I've removed task " + taskNumber + " from the list:");
-        System.out.println("  " + taskString);
+    public String getSuccessDelete(int taskNumber, String taskString, int totalTasks) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Noted. I've removed task " + taskNumber + " from the list:\n");
+        sb.append("  " + taskString + "\n");
         if (totalTasks == 1) {
-            System.out.println("Now you have 1 task in the list.");
+            sb.append("Now you have 1 task in the list.\n");
         } else {
-            System.out.println("Now you have " + totalTasks + " tasks in the list.");
+            sb.append("Now you have " + totalTasks + " tasks in the list.\n");
         }
+        return sb.toString();
     }
 
     /**
@@ -131,13 +144,15 @@ public class Ui {
      * @param count      Number of found tasks.
      * @param keyword    The keyword searched for.
      */
-    public void showFindTasksMessage(String foundTasks, int count, String keyword) {
+    public String getFindTasksMessage(String foundTasks, int count, String keyword) {
+        StringBuilder sb = new StringBuilder();
         if (count == 0) {
-            System.out.println("No tasks found containing the keyword: " + keyword);
+            sb.append("No tasks found containing the keyword: " + keyword + "\n");
         } else {
-            System.out.println("Here are the matching tasks in your list:");
-            System.out.println(foundTasks);
+            sb.append("Here are the matching tasks in your list:\n");
+            sb.append(foundTasks + "\n");
         }
+        return sb.toString();
     }
 
     /**

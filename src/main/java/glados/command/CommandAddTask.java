@@ -68,7 +68,7 @@ public class CommandAddTask extends Command {
      * @param ui    The user interface
      */
     @Override
-    public void execute(TaskList tasks, Ui ui) throws GladosException {
+    public String execute(TaskList tasks, Ui ui) throws GladosException {
         Task t;
         switch (this.type) {
             case TODO -> {
@@ -85,6 +85,6 @@ public class CommandAddTask extends Command {
             }
         }
         tasks.addTask(t);
-        ui.showAddTaskMessage(t.toString(), tasks.getSize());
+        return ui.getAddTaskMessage(t.toString(), tasks.getSize());
     }
 }
