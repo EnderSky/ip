@@ -44,7 +44,7 @@ test {
 }
 
 application {
-    mainClass.set("glados.main.Glados")
+    mainClass.set("glados.gui.Launcher")
 }
 
 shadowJar {

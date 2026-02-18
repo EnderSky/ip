@@ -10,7 +10,7 @@ import glados.utils.Ui;
 /**
  * Main application class for GLaDOS task manager.
  */
-public class Glados {
+public class GladosCli {
 
     private Ui ui;
     private Storage storage;
@@ -23,7 +23,7 @@ public class Glados {
      * @param filePath File path for storing tasks.
      * @param logo     Logo string to display on startup.
      */
-    public Glados(String filePath, String logo) {
+    public GladosCli(String filePath, String logo) {
         this.storage = new Storage(filePath);
         this.ui = new Ui(logo);
         this.taskList = new TaskList(this.storage);
@@ -55,6 +55,13 @@ public class Glados {
     }
 
     /**
+     * Generates a response for the user's chat message.
+     */
+    public String getResponse(String input) {
+        return "GLaDOS heard: " + input;
+    }
+
+    /**
      * Main method to start the GLaDOS application.
      *
      * @param args Command line arguments (not used).
@@ -68,7 +75,7 @@ public class Glados {
                 + " \\____|_____\\__,_|____/ \\___/|____/ \r\n"
                 + "                                       ";
 
-        Glados app = new Glados(filepath, logo);
+        GladosCli app = new GladosCli(filepath, logo);
         app.run();
     }
 }
