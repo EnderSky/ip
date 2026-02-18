@@ -12,5 +12,6 @@ public class GladosException extends RuntimeException {
      */
     public GladosException(String message) {
         super(message);
+        assert message != null : "Exception message should not be null";
     }
 }
