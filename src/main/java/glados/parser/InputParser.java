@@ -9,6 +9,7 @@ import glados.command.CommandDelete;
 import glados.command.CommandFind;
 import glados.command.CommandList;
 import glados.command.CommandMark;
+import glados.command.CommandRemindMe;
 import glados.task.TaskType;
 import glados.utils.GladosException;
 import glados.utils.Ui;
@@ -30,6 +31,8 @@ public class InputParser {
             return new CommandBye();
         } else if (input.equals("list")) {
             return new CommandList();
+        } else if (input.equals("remindme")) {
+            return new CommandRemindMe();
         } else if (input.startsWith("mark")) {
             return parseMarkCommand(input, true);
         } else if (input.startsWith("unmark")) {

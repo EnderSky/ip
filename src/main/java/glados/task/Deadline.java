@@ -26,6 +26,34 @@ public class Deadline extends Task {
     /**
      * Gets the due date and time of the deadline.
      *
+     * @return The due date and time as a LocalDateTime object.
+     */
+    public LocalDateTime getBy() {
+        return this.by;
+    }
+
+    /**
+     * Gets the deadline status based on the current date and time.
+     *
+     * @return A string representing the deadline status (Overdue, Due Today, Due
+     *         Within a Week, Due in the Future).
+     */
+    public String getDeadlineStatus() {
+        LocalDateTime now = LocalDateTime.now();
+        if (this.by.isBefore(now)) {
+            return "Overdue";
+        } else if (this.by.toLocalDate().isEqual(now.toLocalDate())) {
+            return "Due Today";
+        } else if (this.by.isBefore(now.plusDays(7))) {
+            return "Due Within a Week";
+        } else {
+            return "Due in the Future";
+        }
+    }
+
+    /**
+     * Gets the due date and time of the deadline.
+     *
      * @return Formatted due date and time as a string.
      */
     @Override

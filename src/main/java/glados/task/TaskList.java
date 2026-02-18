@@ -23,6 +23,15 @@ public class TaskList {
     }
 
     /**
+     * Gets the list of tasks.
+     *
+     * @return An ArrayList of Task objects.
+     */
+    public ArrayList<Task> getTasks() {
+        return this.tasks;
+    }
+
+    /**
      * Gets the task at the specified index.
      *
      * @param index The index of the task to retrieve.
