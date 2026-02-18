@@ -88,11 +88,6 @@ public class Glados {
         return this.ui.getWelcomeMessage();
     }
 
-    /**
-     * Main method to start the GLaDOS application.
-     *
-     * @param args Command line arguments (not used).
-     */
     public static void main(String[] args) {
         String filepath = "./data/tasks.txt";
         String logo = "  ____ _          ____   ___  ____  \r\n"
