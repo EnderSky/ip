@@ -16,8 +16,8 @@ public class CommandBye extends Command {
      * @param ui    the user interface
      */
     @Override
-    public void execute(TaskList tasks, Ui ui) throws GladosException {
-        ui.showGoodbyeMessage();
+    public String execute(TaskList tasks, Ui ui) throws GladosException {
+        return ui.getGoodbyeMessage();
     }
 
     /**

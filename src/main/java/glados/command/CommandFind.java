@@ -29,7 +29,7 @@ public class CommandFind extends Command {
      * @throws GladosException If an error occurs during execution
      */
     @Override
-    public void execute(TaskList tasks, Ui ui) throws GladosException {
+    public String execute(TaskList tasks, Ui ui) throws GladosException {
         StringBuilder foundTasks = new StringBuilder();
         int count = 0;
         for (int i = 0; i < tasks.getSize(); i++) {
@@ -42,7 +42,7 @@ public class CommandFind extends Command {
                 foundTasks.append(count).append(". ").append(task.toString());
             }
         }
-        ui.showFindTasksMessage(foundTasks.toString(), count, this.keyword);
+        return ui.getFindTasksMessage(foundTasks.toString(), count, this.keyword);
     }
 
 }

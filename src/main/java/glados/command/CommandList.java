@@ -17,11 +17,11 @@ public class CommandList extends Command {
      * @throws GladosException If there are no tasks to list.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui) throws GladosException {
+    public String execute(TaskList tasks, Ui ui) throws GladosException {
         if (tasks.getSize() == 0) {
             throw new GladosException(Ui.getErrorEmptyList());
         } else {
-            ui.showTasks(tasks.toString());
+            return ui.getShowTasksMessage(tasks.toString());
         }
     }
 }

@@ -33,7 +33,7 @@ public class CommandMark extends Command {
      *                         already in the desired state.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui) throws GladosException {
+    public String execute(TaskList tasks, Ui ui) throws GladosException {
         int listSize = tasks.getSize();
         String text = isMark ? "mark" : "unmark";
         int taskIndex = this.taskNumber - 1;
@@ -47,13 +47,13 @@ public class CommandMark extends Command {
                 throw new GladosException(Ui.getErrorTaskAlreadyMarked());
             }
             Task task = tasks.markTaskAsDone(taskIndex);
-            ui.showSuccessMark(this.taskNumber, task.toString());
+            return ui.getSuccessMark(this.taskNumber, task.toString());
         } else {
             if (!isTaskMarked) {
                 throw new GladosException(Ui.getErrorTaskAlreadyUnmarked());
             }
             Task task = tasks.unmarkTaskAsNotDone(taskIndex);
-            ui.showSuccessUnmark(this.taskNumber, task.toString());
+            return ui.getSuccessUnmark(this.taskNumber, task.toString());
         }
     }
 

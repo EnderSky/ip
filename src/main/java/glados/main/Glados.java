@@ -15,6 +15,7 @@ public class Glados {
     private Ui ui;
     private Storage storage;
     private TaskList taskList;
+    private String commandType;
 
     /**
      * Constructor for GLaDOS application.
@@ -27,13 +28,15 @@ public class Glados {
         this.storage = new Storage(filePath);
         this.ui = new Ui(logo);
         this.taskList = new TaskList(this.storage);
+        this.commandType = "";
     }
 
     /**
      * Runs the main application loop.
      */
     public void run() {
-        this.ui.showWelcomeMessage();
+        this.ui.showMessage(this.ui.getWelcomeMessage());
+        Ui.showLine();
 
         String input;
         Boolean isExit = false;
@@ -44,7 +47,8 @@ public class Glados {
 
             try {
                 Command cmd = InputParser.parseInput(input);
-                cmd.execute(this.taskList, this.ui);
+                String response = cmd.execute(this.taskList, this.ui);
+                this.ui.showMessage(response);
                 isExit = cmd.isExit();
             } catch (GladosException e) {
                 this.ui.showError(e.getMessage());
@@ -55,12 +59,42 @@ public class Glados {
     }
 
     /**
+     * Generates a response for the user's chat message.
+     *
+     * @param input The user's input message.
+     * @return The response message from GLaDOS.
+     */
+    public String getResponse(String input) {
+        try {
+            Command cmd = InputParser.parseInput(input);
+            this.commandType = cmd.getClass().getSimpleName();
+            return cmd.execute(this.taskList, this.ui);
+        } catch (GladosException e) {
+            this.commandType = "Error";
+            return e.getMessage();
+        }
+    }
+
+    public String getCommandType() {
+        return this.commandType;
+    }
+
+    /**
+     * Gets the welcome message.
+     *
+     * @return The welcome message to be displayed on startup.
+     */
+    public String getWelcomeMessage() {
+        return this.ui.getWelcomeMessage();
+    }
+
+    /**
      * Main method to start the GLaDOS application.
      *
      * @param args Command line arguments (not used).
      */
     public static void main(String[] args) {
-        String filepath = "../../../data/tasks.txt";
+        String filepath = "./data/tasks.txt";
         String logo = "  ____ _          ____   ___  ____  \r\n"
                 + " / ___| |    __ _|  _ \\ / _ \\/ ___| \r\n"
                 + "| |  _| |   / _` | | | | | | \\___ \\ \r\n"

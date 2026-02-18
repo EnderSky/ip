@@ -16,7 +16,7 @@ public abstract class Command {
      * @param ui    The user interface
      * @throws GladosException If an error occurs during execution
      */
-    public abstract void execute(TaskList tasks, Ui ui) throws GladosException;
+    public abstract String execute(TaskList tasks, Ui ui) throws GladosException;
 
     /**
      * Indicates whether this command exits the program.
