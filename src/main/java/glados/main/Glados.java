@@ -84,8 +84,8 @@ public class Glados {
      *
      * @return The welcome message to be displayed on startup.
      */
-    public String getWelcomeMessage() {
-        return this.ui.getWelcomeMessage();
+    public String getWelcomeMessageNoLogo() {
+        return this.ui.getWelcomeMessageNoLogo();
     }
 
     public static void main(String[] args) {

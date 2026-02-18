@@ -54,7 +54,14 @@ public class Ui {
      * Displays the welcome message to the user.
      */
     public String getWelcomeMessage() {
-        return logo + "\nHello, and again, welcome to the Aperture Science Computer-Aided Enrichment Center.\n"
+        return logo + "\n" + getWelcomeMessageNoLogo();
+    }
+
+    /**
+     * Displays the welcome message without the logo to the user.
+     */
+    public String getWelcomeMessageNoLogo() {
+        return "Hello, and again, welcome to the Aperture Science Computer-Aided Enrichment Center.\n"
                 + "What can I do for you today?";
     }
 

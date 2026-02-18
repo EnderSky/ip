@@ -40,7 +40,7 @@ public class MainWindow extends AnchorPane {
     /** Injects the Glados instance */
     public void setGlados(Glados g) {
         glados = g;
-        DialogBox welcomeDialog = DialogBox.getGladosDialog(glados.getWelcomeMessage(), gladosImage,
+        DialogBox welcomeDialog = DialogBox.getGladosDialog(glados.getWelcomeMessageNoLogo(), gladosImage,
                 glados.getCommandType());
         dialogContainer.getChildren().add(welcomeDialog);
     }
