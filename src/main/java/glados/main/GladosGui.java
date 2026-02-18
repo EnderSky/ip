@@ -6,6 +6,7 @@ import glados.gui.MainWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -33,11 +34,15 @@ public class GladosGui extends Application {
     @Override
     public void start(Stage stage) {
         try {
+            Image icon = new Image(this.getClass().getResourceAsStream("/images/aperture-science-logo.png"));
             FXMLLoader fxmlLoader = new FXMLLoader(GladosGui.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
             stage.setTitle("GLaDOS");
+            stage.getIcons().add(icon);
+            stage.setMinHeight(220);
+            stage.setMinWidth(417);
             fxmlLoader.<MainWindow>getController().setGlados(this.glados); // inject the GLaDOS instance
             stage.show();
         } catch (IOException e) {

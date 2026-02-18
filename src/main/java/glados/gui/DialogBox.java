@@ -12,6 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 
 /**
  * DialogBox class to represent a dialog box in the GLaDOS GUI application.
@@ -52,6 +54,7 @@ public class DialogBox extends HBox {
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
+        dialog.getStyleClass().add("reply-label");
     }
 
     /**
@@ -67,16 +70,37 @@ public class DialogBox extends HBox {
     }
 
     /**
+     * Changes the style of the dialog box based on the type of command executed.
+     *
+     * @param commandType The type of command executed, used to determine dialog
+     *                    style.
+     */
+    private void changeDialogStyle(String commandType) {
+        switch (commandType) {
+            case "CommandAddTask" -> dialog.getStyleClass().add("add-label");
+            case "CommandMark" -> dialog.getStyleClass().add("marked-label");
+            case "CommandDelete" -> dialog.getStyleClass().add("delete-label");
+            case "Error" -> dialog.getStyleClass().add("error-label");
+            default -> {
+            }
+        }
+    }
+
+    /**
      * Factory method to create a DialogBox for GLaDOS's response. Flips the dialog
      * box so that the image is on the left and text on the right.
      *
-     * @param text The text to be displayed in the dialog box.
-     * @param img  The image to be displayed in the dialog box.
-     * @return A DialogBox instance with the specified text and image, flipped.
+     * @param text        The text to be displayed in the dialog box.
+     * @param img         The image to be displayed in the dialog box.
+     * @param commandType The type of command executed, used to determine dialog
+     *                    style.
+     * @return A DialogBox instance with the specified text and image, flipped and
+     *         styled.
      */
-    public static DialogBox getGladosDialog(String text, Image img) {
+    public static DialogBox getGladosDialog(String text, Image img, String commandType) {
         var db = new DialogBox(text, img);
         db.flip();
+        db.changeDialogStyle(commandType);
         return db;
     }
 }

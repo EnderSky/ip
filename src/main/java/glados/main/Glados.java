@@ -15,6 +15,7 @@ public class Glados {
     private Ui ui;
     private Storage storage;
     private TaskList taskList;
+    private String commandType;
 
     /**
      * Constructor for GLaDOS application.
@@ -27,6 +28,7 @@ public class Glados {
         this.storage = new Storage(filePath);
         this.ui = new Ui(logo);
         this.taskList = new TaskList(this.storage);
+        this.commandType = "";
     }
 
     /**
@@ -65,10 +67,16 @@ public class Glados {
     public String getResponse(String input) {
         try {
             Command cmd = InputParser.parseInput(input);
+            this.commandType = cmd.getClass().getSimpleName();
             return cmd.execute(this.taskList, this.ui);
         } catch (GladosException e) {
+            this.commandType = "Error";
             return e.getMessage();
         }
+    }
+
+    public String getCommandType() {
+        return this.commandType;
     }
 
     /**

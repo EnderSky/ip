@@ -245,9 +245,14 @@ public class Ui {
      */
     public static String getErrorUnknownCommand() {
         return "I'm sorry, I don't recognize that command.\n"
-                + "Valid commands are: list, mark <number>, unmark <number>, delete <number>, bye, \n"
-                + "                    todo <description>, \n"
-                + "                    deadline <description> /by <date/time>, \n"
-                + "                    event <description> /from <from> /to <to>";
+                + "Valid commands: \n"
+                + "- list\n"
+                + "- mark <number>\n"
+                + "- unmark <number>\n"
+                + "- delete <number>\n"
+                + "- bye\n"
+                + "- todo <description>, \n"
+                + "- deadline <description> /by <date/time>, \n"
+                + "- event <description> /from <from> /to <to>";
     }
 }

@@ -36,7 +36,8 @@ public class MainWindow extends AnchorPane {
     /** Injects the Glados instance */
     public void setGlados(Glados g) {
         glados = g;
-        DialogBox welcomeDialog = DialogBox.getGladosDialog(glados.getWelcomeMessage(), gladosImage);
+        DialogBox welcomeDialog = DialogBox.getGladosDialog(glados.getWelcomeMessage(), gladosImage,
+                glados.getCommandType());
         dialogContainer.getChildren().add(welcomeDialog);
     }
 
@@ -49,9 +50,10 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = glados.getResponse(input);
+        String commandType = glados.getCommandType();
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getGladosDialog(response, gladosImage));
+                DialogBox.getGladosDialog(response, gladosImage, commandType));
         userInput.clear();
     }
 }
