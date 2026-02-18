@@ -70,8 +70,12 @@ public class Storage {
         boolean isDone = parts[1].equals("1");
         String description = parts[2];
         switch (type) {
-            case 'T' -> task = new Todo(description);
+            case 'T' -> {
+                assert parts.length == 3 : "Todo task should have exactly 3 parts";
+                task = new Todo(description);
+            }
             case 'D' -> {
+                assert parts.length == 4 : "Deadline task should have exactly 4 parts";
                 String by = parts[3];
                 // Parse by to LocalDateTime with format: DD MMM YYYY HH:mm am/pm (12-hour)
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a");
@@ -79,9 +83,8 @@ public class Storage {
                 task = new Deadline(description, byDateTime);
             }
             case 'E' -> {
-                String from = parts[3];
-                String to = parts[4];
-                task = new Event(description, from, to);
+                assert parts.length == 5 : "Event task should have exactly 5 parts";
+                task = new Event(description, parts[3], parts[4]);
             }
             default -> System.out.println("Unknown task type: " + type);
         }
