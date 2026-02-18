@@ -55,5 +55,21 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getGladosDialog(response, gladosImage, commandType));
         userInput.clear();
+
+        if (commandType.equals("CommandBye")) {
+            // Disable input after exit command
+            userInput.setDisable(true);
+            sendButton.setDisable(true);
+
+            // Close the application after a short delay
+            new Thread(() -> {
+                try {
+                    Thread.sleep(2000); // Wait for 2 seconds before closing
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.exit(0);
+            }).start();
+        }
     }
 }
