@@ -14,14 +14,21 @@ public class DateTimeParser {
     // List of supported date-time formats
     private static final List<DateTimeFormatter> FORMATTERS = List.of(
             DateTimeFormatter.ofPattern("d/M/yyyy h:mm a"), // eg. 25/12/2024 6:00 PM
+            DateTimeFormatter.ofPattern("d/M/yyyy h:mma"), // eg. 25/12/2024 6:00PM
             DateTimeFormatter.ofPattern("d/M/yyyy HHmm"), // eg. 2/1/2024 1800 (24-hour format)
 
             DateTimeFormatter.ofPattern("yyyy-M-d h:mm a"), // eg. 2024-12-25 06:00 AM
+            DateTimeFormatter.ofPattern("yyyy-M-d h:mma"), // eg. 2024-12-25 06:00AM
             DateTimeFormatter.ofPattern("yyyy-M-d HHmm"), // eg. 2024-1-5 0800 (24-hour format)
 
             new DateTimeFormatterBuilder()
                     .parseCaseInsensitive()
                     .appendPattern("d MMM yyyy h:mm a") // eg. 2 Dec 2024 06:30 PM
+                    .toFormatter(),
+
+            new DateTimeFormatterBuilder()
+                    .parseCaseInsensitive()
+                    .appendPattern("d MMM yyyy h:mma") // eg. 2 Dec 2024 06:30PM
                     .toFormatter(),
 
             new DateTimeFormatterBuilder()
