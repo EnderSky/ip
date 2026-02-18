@@ -102,20 +102,7 @@ public class Storage {
     public void saveTasks(ArrayList<Task> tasks) {
         // Create file and parent directories if they do not exist
         Path filePath = Paths.get(this.filePathString);
-
-        try {
-            // Check if file & parent folders exist
-            if (!Files.exists(filePath.getParent())) {
-                Files.createDirectories(filePath.getParent());
-            }
-
-            // Create file if it doesn't exist
-            if (!Files.exists(filePath)) {
-                Files.createFile(filePath);
-            }
-        } catch (IOException e) {
-            System.out.println("An error occurred while creating the file: " + e.getMessage());
-        }
+        this.createFileIfNotExists(filePath);
 
         // Save tasks to file at filePath
         // Per row: <type> | <isDone> | <description> | <additionalInfo>
@@ -135,6 +122,22 @@ public class Storage {
             }
         } catch (Exception e) {
             System.out.println("An error occurred while writing to file: " + e.getMessage());
+        }
+    }
+
+    private void createFileIfNotExists(Path filePath) {
+        try {
+            // Check if file & parent folders exist
+            if (!Files.exists(filePath.getParent())) {
+                Files.createDirectories(filePath.getParent());
+            }
+
+            // Create file if it doesn't exist
+            if (!Files.exists(filePath)) {
+                Files.createFile(filePath);
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred while creating the file: " + e.getMessage());
         }
     }
 }
