@@ -1,13 +1,13 @@
 package glados.command;
 
+import java.util.stream.Stream;
+
+import glados.task.Deadline;
+import glados.task.DeadlineCategory;
+import glados.task.Task;
 import glados.task.TaskList;
 import glados.utils.GladosException;
 import glados.utils.Ui;
-import glados.task.Deadline;
-import java.util.stream.Stream;
-import glados.task.Task;
-import java.util.List;
-import glados.task.DeadlineCategory;
 
 /**
  * Command to remind the user of their tasks with upcoming deadlines.

@@ -1,5 +1,9 @@
 package glados.task;
 
+/**
+ * Enum to represent the different categories of deadlines based on their due
+ * date.
+ */
 public enum DeadlineCategory {
     OVERDUE("Overdue"),
     DUE_TODAY("Due Today"),
