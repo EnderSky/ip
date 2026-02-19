@@ -39,7 +39,7 @@ public class CommandFind extends Command {
                     foundTasks.append("\n");
                 }
                 count++;
-                foundTasks.append(count).append(". ").append(task.toString());
+                foundTasks.append(i + 1).append(". ").append(task.toString());
             }
         }
         return ui.getFindTasksMessage(foundTasks.toString(), count, this.keyword);
