@@ -28,6 +28,7 @@ public class InputParser {
      * @throws GladosException If the input is invalid or cannot be parsed.
      */
     public static Command parseInput(String input) throws GladosException {
+        input = input.trim();
         if (input.equals("bye")) {
             return new CommandBye();
         } else if (input.equals("help")) {
@@ -57,6 +58,8 @@ public class InputParser {
     }
 
     private static Command parseMarkCommand(String input, boolean isMark) throws GladosException {
+        // Trim internal spaces
+        input = input.replaceAll("\\s+", " ");
         if (!input.matches("(mark|unmark) \\d+")) {
             throw new GladosException(Ui.getErrorIncorrectNumberFormat(isMark ? "mark" : "unmark"));
         }
