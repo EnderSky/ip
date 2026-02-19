@@ -39,7 +39,8 @@ public class CommandRemindMe extends Command {
         // AI Assisted (Tool: GitHub Copilot)
         // The prompt is given below:
         // Do the following with Java streams
-        // 1. Filter all tasks to only include Deadline tasks
+        // 1. Filter all tasks to only include Deadline tasks that are not marked as
+        // done
         // 2. Sort the Deadline tasks by their deadline in ascending order
         // 3. Group the tasks by the following groups: overdue, today, within the next
         // week, far future
@@ -50,6 +51,7 @@ public class CommandRemindMe extends Command {
         sb.append("\n").append(category.toString());
         tasks.getTasks().stream()
                 .filter(task -> task.getType() == 'D')
+                .filter(task -> !task.isDone())
                 .sorted((t1, t2) -> {
                     assert t1 instanceof Deadline : "Task should be of type Deadline";
                     assert t2 instanceof Deadline : "Task should be of type Deadline";

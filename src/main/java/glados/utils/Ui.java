@@ -265,7 +265,7 @@ public class Ui {
                 + "- remindme: Sort and show deadlines.\n"
                 + "- todo <description>: Add a todo task with the given description.\n"
                 + "- deadline <description> /by <date/time>: Add a deadline task with the given description and due date/time.\n"
-                + "- event <description> /from <from> /to <to>: Add an event task with the given description, start date/time, and end date/time."
+                + "- event <description> /from <from> /to <to>: Add an event task with the given description, start date/time, and end date/time.\n"
                 + "- bye: Exit the application.\n";
     }
 }
