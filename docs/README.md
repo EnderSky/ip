@@ -11,7 +11,8 @@ GLaDOS is a task management chatbot inspired by the Portal character. It helps y
 5. Use the command `java -jar glados.jar` to run the application.
 6. Type `help` to see all available commands at any time.
 
----
+## Sample UI
+![GLaDOS UI](Ui.png)
 
 ## Features
 
@@ -154,8 +155,6 @@ Goodbye. Thank you for participating in this Aperture Science test.
 Remember, the cake is a lie.
 ```
 
----
-
 ## Command Summary
 
 | Command | Format | Example |
@@ -171,8 +170,6 @@ Remember, the cake is a lie.
 | View Reminders | `remindme` | `remindme` |
 | Help | `help` | `help` |
 | Exit | `bye` | `bye` |
-
----
 
 ## Additional Info
 
